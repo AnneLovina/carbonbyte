@@ -1,0 +1,30 @@
+{# base.html #}
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Digital Carbon Calculator{% endblock %}</title>
+    <link href="https://cdn.jsdelivr.net/npm/daisyui@3.9.2/dist/full.css" rel="stylesheet" type="text/css" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/alpinejs" defer></script>
+    <style>
+        /* Custom styles for form inputs */
+        .form-control {
+            min-height: 3rem;
+        }
+
+        .select,
+        .input {
+            height: 3rem !important;
+        }
+    </style>
+</head>
+
+<body class="min-h-screen bg-base-200">
+    {% block content %}{% endblock %}
+    {% block scripts %}{% endblock %}
+</body>
+
+</html>

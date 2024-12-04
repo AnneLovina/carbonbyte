@@ -1,0 +1,59 @@
+{# index.html #}
+{% extends "base.html" %}
+{% from "components/stepper.html" import render_stepper %}
+{% from "components/form_section.html" import render_form_section %}
+{% from "components/completion_modal.html" import render_completion_modal %}
+
+{% block content %}
+<div class="container mx-auto px-4 py-8">
+    <div class="text-center mb-12">
+        <h1 class="text-4xl font-bold mb-3">Digital Carbon Calculator</h1>
+        <p class="text-xl text-base-content/70">Calculate the carbon footprint of your digital product</p>
+    </div>
+
+    {{ render_stepper(current_section, total_sections) }}
+
+    <div class="max-w-2xl mx-auto">
+        {% if current_section == 1 %}
+        {{ render_form_section(
+        server_form,
+        "Server Infrastructure",
+        "Configure your server location and specifications to calculate the base carbon footprint.",
+        has_previous=false
+        ) }}
+        {% elif current_section == 2 %}
+        {{ render_form_section(
+        storage_form,
+        "Storage Configuration",
+        "Specify your storage requirements and types to determine the storage-related carbon impact."
+        ) }}
+        {% elif current_section == 3 %}
+        {{ render_form_section(
+        networking_form,
+        "Network Usage",
+        "Enter your networking and CDN usage to calculate the network-related carbon footprint."
+        ) }}
+        {% endif %}
+    </div>
+</div>
+
+<!--- {{ render_completion_modal() }} --->
+{% endblock %}
+
+{% block scripts %}
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        // Show completion modal on final section submission
+        const forms = document.querySelectorAll('form');
+        forms.forEach(form => {
+            form.addEventListener('submit', function (e) {
+                const isLastSection = {{ current_section == total_sections
+            }};
+        if (isLastSection) {
+            document.getElementById('completion_modal').showModal();
+        }
+    });
+    });
+});
+</script>
+{% endblock %}

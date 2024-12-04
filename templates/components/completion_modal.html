@@ -1,0 +1,15 @@
+{# components/completion_modal.html #}
+{% macro render_completion_modal() %}
+<dialog id="completion_modal" class="modal">
+    <div class="modal-box">
+        <h3 class="font-bold text-lg">Calculation Complete! 🎉</h3>
+        <p class="py-4">Your digital carbon footprint calculation is complete. You can now view your detailed results.
+        </p>
+        <div class="modal-action">
+            <form method="dialog">
+                <button class="btn btn-primary">View Results</button>
+            </form>
+        </div>
+    </div>
+</dialog>
+{% endmacro %}

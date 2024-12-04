@@ -1,0 +1,9 @@
+{# components/stepper.html #}
+{% macro render_stepper(current_section, total_sections) %}
+<ul class="steps steps-horizontal w-full mb-8">
+    <li class="step step-primary" data-content="1">Server</li>
+    <li class="step {% if current_section >= 2 %}step-primary{% endif %}" data-content="2">Storage</li>
+    <li class="step {% if current_section >= 3 %}step-primary{% endif %}" data-content="3">Network</li>
+    <li class="step {% if current_section >= 4 %}step-primary{% endif %}" data-content="4">Results</li>
+</ul>
+{% endmacro %}
