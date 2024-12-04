@@ -1,5 +1,5 @@
 {# components/form_section.html #}
-{% macro render_form_section(form, title, description, has_previous=true) %}
+{% macro render_form_section(form, title, description) %}
 <div class="card w-full bg-base-100 shadow-xl">
     <div class="card-body">
         <h2 class="card-title text-2xl mb-4">{{ title }}</h2>
@@ -30,9 +30,7 @@
             {% endfor %}
 
             <div class="card-actions justify-end mt-8">
-                {% if has_previous %}
                 <a href="{{ url_for('prev_step') }}" class="btn btn-outline">Previous</a>
-                {% endif %}
                 {{ form.submit(class="btn btn-primary") }}
             </div>
         </form>

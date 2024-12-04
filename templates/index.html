@@ -18,8 +18,7 @@
         {{ render_form_section(
         server_form,
         "Server Infrastructure",
-        "Configure your server location and specifications to calculate the base carbon footprint.",
-        has_previous=false
+        "Configure your server location and specifications to calculate the base carbon footprint."
         ) }}
         {% elif current_section == 2 %}
         {{ render_form_section(
@@ -37,23 +36,6 @@
     </div>
 </div>
 
-<!--- {{ render_completion_modal() }} --->
-{% endblock %}
+{{ render_completion_modal() }}
 
-{% block scripts %}
-<script>
-    document.addEventListener('DOMContentLoaded', function () {
-        // Show completion modal on final section submission
-        const forms = document.querySelectorAll('form');
-        forms.forEach(form => {
-            form.addEventListener('submit', function (e) {
-                const isLastSection = {{ current_section == total_sections
-            }};
-        if (isLastSection) {
-            document.getElementById('completion_modal').showModal();
-        }
-    });
-    });
-});
-</script>
 {% endblock %}
