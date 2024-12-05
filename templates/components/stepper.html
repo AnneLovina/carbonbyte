@@ -1,13 +1,20 @@
 {# components/stepper.html #}
-{% macro render_stepper(current_section, total_sections, visited_sections) %}
+{% macro render_stepper(current_section, total_sections, visited_sections, config) %}
 <ul class="steps steps-horizontal w-full mb-8">
-    <li class="step cursor-pointer {% if current_section >= 1 %}step-primary{% endif %} {% if 1 in visited_sections %}step-success{% endif %}"
-        onclick="window.location.href='{{ url_for('step', step_number=1) }}'" data-content="1">Server</li>
-    <li class="step cursor-pointer {% if current_section >= 2 %}step-primary{% endif %} {% if 2 in visited_sections %}step-success{% endif %}"
-        onclick="window.location.href='{{ url_for('step', step_number=2) }}'" data-content="2">Storage</li>
-    <li class="step cursor-pointer {% if current_section >= 3 %}step-primary{% endif %} {% if 3 in visited_sections %}step-success{% endif %}"
-        onclick="window.location.href='{{ url_for('step', step_number=3) }}'" data-content="3">Network</li>
-    <li class="step cursor-pointer {% if current_section >= 4 %}step-primary{% endif %} {% if 4 in visited_sections %}step-success{% endif %}"
-        onclick="window.location.href='{{ url_for('results') }}'" data-content="4">Results</li>
+    {% for step_number in range(1, total_sections + 1) %}
+    <li class="step cursor-pointer 
+        {% if current_section >= step_number %}step-primary{% endif %} 
+        {% if step_number in visited_sections %}step-success{% endif %}"
+        onclick="window.location.href='{{ url_for('step', step_number=step_number) }}'"
+        data-content="{{ step_number }}">
+        {{ config[step_number]['title'] }}
+    </li>
+    {% endfor %}
+    <li class="step cursor-pointer 
+        {% if current_section > total_sections %}step-primary{% endif %} 
+        {% if total_sections + 1 in visited_sections %}step-success{% endif %}"
+        onclick="window.location.href='{{ url_for('results') }}'" data-content="{{ total_sections + 1 }}">
+        Results
+    </li>
 </ul>
 {% endmacro %}

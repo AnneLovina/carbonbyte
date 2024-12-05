@@ -2,7 +2,6 @@
 {% extends "base.html" %}
 {% from "components/stepper.html" import render_stepper %}
 {% from "components/form_section.html" import render_form_section %}
-{% from "components/completion_modal.html" import render_completion_modal %}
 
 {% block content %}
 <div class="container mx-auto px-4 py-8">
@@ -11,7 +10,7 @@
         <p class="text-xl text-base-content/70">Calculate the carbon footprint of your digital product</p>
     </div>
 
-    {{ render_stepper(current_section, total_sections) }}
+    {{ render_stepper(current_section, total_sections, visited_sections, config) }}
 
     <div class="max-w-2xl mx-auto">
         {% set form = forms['form_' ~ current_section] %}
