@@ -14,28 +14,17 @@
     {{ render_stepper(current_section, total_sections) }}
 
     <div class="max-w-2xl mx-auto">
-        {% if current_section == 1 %}
-        {{ render_form_section(
-        server_form,
-        "Server Infrastructure",
-        "Configure your server location and specifications to calculate the base carbon footprint."
-        ) }}
-        {% elif current_section == 2 %}
-        {{ render_form_section(
-        storage_form,
-        "Storage Configuration",
-        "Specify your storage requirements and types to determine the storage-related carbon impact."
-        ) }}
-        {% elif current_section == 3 %}
-        {{ render_form_section(
-        networking_form,
-        "Network Usage",
-        "Enter your networking and CDN usage to calculate the network-related carbon footprint."
-        ) }}
+        {% for step_num in range(1, total_sections + 1) %}
+        {% if current_section == step_num %}
+        {% set form = forms['form_' ~ step_num] %}
+        <form method="POST">
+            {{ form.hidden_tag() }}
+            {{ render_form_section(form, title, description) }}
+            {{ form.submit() }}
+        </form>
         {% endif %}
+        {% endfor %}
     </div>
 </div>
-
-{{ render_completion_modal() }}
 
 {% endblock %}

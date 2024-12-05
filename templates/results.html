@@ -1,6 +1,7 @@
 {# results.html #}
 {% extends "base.html" %}
 {% from "components/stepper.html" import render_stepper %}
+{% from "components/form_section.html" import render_form_section %}
 
 {% block content %}
 <div class="container mx-auto px-4 py-8">
@@ -9,73 +10,49 @@
         <p class="text-xl text-base-content/70">Your Carbon Footprint Results</p>
     </div>
 
-    {{ render_stepper(4, total_sections, visited_sections) }}
+    {{ render_stepper(total_sections + 1, total_sections, visited_sections) }}
 
     <div class="max-w-2xl mx-auto">
         <div class="card w-full bg-base-100 shadow-xl">
             <div class="card-body">
                 <h2 class="card-title text-2xl mb-6">Summary of Your Inputs</h2>
 
-                {# Server Infrastructure Section #}
+                {# Dynamically render each form section summary #}
+                {% for section_key, section_data in collected_data.items() %}
                 <div class="mb-8">
-                    <h3 class="text-xl font-semibold text-primary mb-4">Server Infrastructure</h3>
+                    <h3 class="text-xl font-semibold text-primary mb-4">
+                        {{ section_key | replace('_data', '') | replace('_', ' ') | title }}
+                    </h3>
                     <div class="grid grid-cols-2 gap-4">
-                        <div class="text-base-content/70">Server Location:</div>
-                        <div class="font-medium">{{ server_data.get('location', 'Not specified') | replace('_', ' ') |
-                            title }}</div>
-
-                        <div class="text-base-content/70">Server Type:</div>
-                        <div class="font-medium">{{ server_data.get('type', 'Not specified') | replace('_', ' ') | title
-                            }}</div>
-
-                        <div class="text-base-content/70">CPU Usage:</div>
-                        <div class="font-medium">{{ server_data.get('cpu_usage', 'Not specified') }}%</div>
+                        {% for field_name, field_value in section_data.items() %}
+                        <div class="text-base-content/70">
+                            {{ field_name | replace('_', ' ') | title }}:
+                        </div>
+                        <div class="font-medium">
+                            {% if field_value is number and field_name in ['bandwidth', 'amount'] %}
+                            {{ field_value }} GB
+                            {% elif field_value is number and field_name == 'cpu_usage' %}
+                            {{ field_value }}%
+                            {% else %}
+                            {{ field_value | replace('_', ' ') | title }}
+                            {% endif %}
+                        </div>
+                        {% endfor %}
                     </div>
                 </div>
+                {% endfor %}
 
-                {# Storage Section #}
-                <div class="mb-8">
-                    <h3 class="text-xl font-semibold text-primary mb-4">Storage Configuration</h3>
-                    <div class="grid grid-cols-2 gap-4">
-                        <div class="text-base-content/70">Storage Type:</div>
-                        <div class="font-medium">{{ storage_data.get('type', 'Not specified') | replace('_', ' ') |
-                            upper }}</div>
-
-                        <div class="text-base-content/70">Storage Amount:</div>
-                        <div class="font-medium">{{ storage_data.get('amount', 'Not specified') }} GB</div>
-                    </div>
-                </div>
-
-                {# Network Section #}
-                <div class="mb-8">
-                    <h3 class="text-xl font-semibold text-primary mb-4">Network Usage</h3>
-                    <div class="grid grid-cols-2 gap-4">
-                        <div class="text-base-content/70">Monthly Bandwidth:</div>
-                        <div class="font-medium">{{ networking_data.get('bandwidth', 'Not specified') }} GB</div>
-
-                        <div class="text-base-content/70">CDN Usage:</div>
-                        <div class="font-medium">{{ networking_data.get('cdn', 'Not specified') | replace('_', ' ') |
-                            title }}</div>
-                    </div>
-                </div>
-
-                {# Calculated Carbon Footprint #}
+                {# Carbon Footprint Results #}
                 <div class="mt-8 p-6 bg-base-200 rounded-lg">
                     <h3 class="text-xl font-semibold text-primary mb-4">Estimated Carbon Footprint</h3>
                     <div class="stats stats-vertical lg:stats-horizontal shadow">
+                        {% for metric, value in carbon_footprint.items() %}
                         <div class="stat">
-                            <div class="stat-title">Monthly CO2 Emissions</div>
-                            <div class="stat-value text-primary">{{ carbon_footprint.get('monthly', 0) | round(2) }}
-                            </div>
+                            <div class="stat-title">{{ metric | replace('_', ' ') | title }} CO2 Emissions</div>
+                            <div class="stat-value text-primary">{{ value | round(2) }}</div>
                             <div class="stat-desc">kg CO2e</div>
                         </div>
-
-                        <div class="stat">
-                            <div class="stat-title">Yearly CO2 Emissions</div>
-                            <div class="stat-value text-primary">{{ carbon_footprint.get('yearly', 0) | round(2) }}
-                            </div>
-                            <div class="stat-desc">kg CO2e</div>
-                        </div>
+                        {% endfor %}
                     </div>
                 </div>
 
