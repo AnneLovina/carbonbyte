@@ -1,4 +1,4 @@
-from flask import Flask, render_template, redirect, url_for, session
+from flask import Flask, render_template, redirect, url_for, request, session
 from config import FORM_CONFIG
 from carbon_calculation import calculate_carbon_footprint
 import secrets
@@ -47,6 +47,11 @@ def get_form_instance(step_number):
 
 
 def handle_form_submission(step_number, form):
+    # Only process if it's a POST request
+    if request.method != "POST":
+        return None
+
+    # Now check form validation
     if not form.validate_on_submit():
         return None
 
@@ -95,7 +100,7 @@ def step(step_number):
         current_section=step_number,
         total_sections=len(FORM_CONFIG),
         visited_sections=session.get("visited_sections", []),
-        forms={f"form_{i}": get_form_instance(i) for i in FORM_CONFIG.keys()},
+        forms={f"form_{step_number}": current_form},  # Only pass the current form
         title=FORM_CONFIG[step_number]["title"],
         description=FORM_CONFIG[step_number]["description"],
     )
