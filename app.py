@@ -1,11 +1,10 @@
-from flask import Flask, render_template, redirect, url_for, request, session
-from config import FORM_CONFIG
+from flask import Flask, render_template, request, redirect, url_for, session
+from config import FORM_CONFIG, Config
 from carbon_calculation import calculate_carbon_footprint
-import secrets
 from datetime import datetime
 
 app = Flask(__name__)
-app.config["SECRET_KEY"] = secrets.token_hex(16)
+app.config["SECRET_KEY"] = Config.SECRET_KEY
 
 
 def initialize_session():
@@ -184,4 +183,4 @@ def results():
 
 
 if __name__ == "__main__":
-    app.run(host="0.0.0.0", port=8080, debug=True)
+    app.run(host=Config.HOST, port=Config.PORT, debug=Config.DEBUG)

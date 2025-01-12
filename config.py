@@ -1,6 +1,17 @@
 # config.py
 from forms import *
+import secrets
 
+
+class Config:
+    SECRET_KEY = secrets.token_hex(16)
+    DATABASE = "users.db"
+    DEBUG = True
+    HOST = "0.0.0.0"
+    PORT = 8080
+
+
+########### FORM CONFIG ###########
 FORM_CONFIG = {
     1: {
         "title": "Introduction",
