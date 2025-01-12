@@ -11,6 +11,69 @@ from wtforms import (
 from wtforms.validators import DataRequired, Optional, NumberRange
 
 
+class EmptyForm(FlaskForm):
+    """Empty form for the index page"""
+
+    submit = SubmitField("Start Reporting")
+
+
+class DigitalProductForm(FlaskForm):
+    """Form for digital product information collection"""
+
+    product_name = StringField(
+        "Name of your digital Product",
+        validators=[DataRequired()],
+        description="Enter the name of your digital product",
+        render_kw={"placeholder": "testdigital.com"},
+    )
+
+    product_type = SelectField(
+        "Type of digital Product",
+        validators=[DataRequired()],
+        choices=[
+            ("website", "Website"),
+            ("app", "App"),
+            ("podcast", "Podcast"),
+            ("newsletter", "Newsletter"),
+            ("epaper", "E-Paper"),
+        ],
+    )
+
+    country = SelectField(
+        "Country",
+        validators=[DataRequired()],
+        choices=[
+            ("usa", "USA"),
+            ("germany", "Germany"),
+            ("france", "France"),
+            ("uk", "UK"),
+            ("poland", "Poland"),
+            ("austria", "Austria"),
+            ("sweden", "Sweden"),
+            ("china", "China"),
+            ("india", "India"),
+            ("canada", "Canada"),
+            ("mexico", "Mexico"),
+            ("brazil", "Brazil"),
+            ("south_africa", "South Africa"),
+        ],
+    )
+
+    start_date = DateField(
+        "Start-date of reporting",
+        validators=[DataRequired()],
+        description="Select the start date for reporting",
+    )
+
+    end_date = DateField(
+        "End-date of reporting",
+        validators=[DataRequired()],
+        description="Select the end date for reporting",
+    )
+
+    submit = SubmitField("Submit")
+
+
 class BasicProductInfoForm(FlaskForm):
     """Form for mandatory basic product information (In_1 to In_5)"""
 
