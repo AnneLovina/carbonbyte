@@ -5,6 +5,7 @@ from models.user import User
 from routes.auth import auth
 from routes.main import main
 import os
+from config import Config
 
 
 def create_app():
@@ -35,4 +36,4 @@ def create_app():
 
 if __name__ == "__main__":
     app = create_app()
-    app.run(debug=True)  # Set to False for production
+    app.run(host=Config.HOST, port=Config.PORT, debug=Config.DEBUG)
