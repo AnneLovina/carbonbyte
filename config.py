@@ -18,25 +18,24 @@ CALCULATOR_CONFIG = {
         "introduction": {
             "title": "Introduction",
             "text": """
-            <h1 class="text-3xl font-bold text-gray-800 mb-4">Energy Consumption across the Digital Value Chain</h1>
+          <h1 class="text-3xl font-bold text-gray-800 mb-4">Energy Consumption across the Digital Value Chain</h1>
 
-            <p class="text-gray-700 mb-4">
-                The largest energy consumers are typically data centers and network infrastructure, followed by end-user device consumption. Our calculation model focuses on these three; therefore, categories 1, 5, and 6 are not included.
-            </p>
+          <p class="text-gray-700 mb-4">
+              The largest energy consumers are typically data centers and network infrastructure, followed by end-user device consumption. Our calculation model focuses on these three; therefore, categories 1, 5, and 6 are not included.
+          </p>
 
-            <div class="text-gray-700">
-                <p><strong>Development and Design:</strong> Electricity consumption in offices and development environments.</p>
-                <p><strong>Hosting and Data Processing:</strong> High electricity use in data centers (servers, cooling, networks).</p>
-                <p><strong>Content Delivery:</strong> Energy for global networks and CDN infrastructure.</p>
-                <p><strong>End-User Consumption:</strong> Power used by end-user devices and networking technology.</p>
-                <p><strong>Maintenance and Updates:</strong> Electricity for updates and continuous integration.</p>
-                <p><strong>Disposal:</strong> Energy for recycling and waste management.</p>
-            </div>
+          <div class="text-gray-700">
+              <p><strong>Development and Design:</strong> Electricity consumption in offices and development environments.</p>
+              <p><strong>Hosting and Data Processing:</strong> High electricity use in data centers (servers, cooling, networks).</p>
+              <p><strong>Content Delivery:</strong> Energy for global networks and CDN infrastructure.</p>
+              <p><strong>End-User Consumption:</strong> Power used by end-user devices and networking technology.</p>
+              <p><strong>Maintenance and Updates:</strong> Electricity for updates and continuous integration.</p>
+              <p><strong>Disposal:</strong> Energy for recycling and waste management.</p>
+          </div>
 
-            <p class="text-gray-700 mt-4">In addition, no hardware emissions are included in the model.</p>
-
-            """,
-            "fields": {},  # No fields in the introduction section
+          <p class="text-gray-700 mt-4">In addition, no hardware emissions are included in the model.</p>
+          """,
+            "fields": {},
         },
         "product_overview": {
             "title": "Product Overview",
@@ -44,7 +43,7 @@ CALCULATOR_CONFIG = {
                 "product_name": {
                     "type": "url",
                     "label": "Name of your digital Product",
-                    "info": "Enter the URL of your product",
+                    "info": "e.g. yourfootprint.de or Digtal Podcast",
                 },
                 "product_type": {
                     "type": "select",
@@ -78,125 +77,122 @@ CALCULATOR_CONFIG = {
                         "south_africa": {"label": "South Africa"},
                     },
                 },
-            },
-        },
-        "hosting": {  # Renamed to data_center_emissions for clarity
-            "title": "Data Center Emissions",
-            "fields": {
-                "cloud_provider": {
-                    "type": "select",
-                    "label": "Cloud Provider",
-                    "options": {
-                        "aws": {"label": "AWS", "emission_factor": 0.0005},
-                        "gcp": {"label": "Google Cloud", "emission_factor": 0.0004},
-                        "azure": {"label": "Azure", "emission_factor": 0.00045},
-                        "other": {"label": "Other", "emission_factor": 0.0006},
-                    },
+                "start_date": {
+                    "type": "date",
+                    "label": "Start Date",
+                    "info": "Start date of the calculation period",
                 },
-                "server_hours": {
-                    "type": "number",
-                    "label": "Server Hours per Month",
-                    "emission_factor": 0.0001,
-                },
-                "server_type": {
-                    "type": "select",
-                    "label": "Server Type",
-                    "options": {
-                        "small": {"label": "Small (2 vCPU)", "multiplier": 1},
-                        "medium": {"label": "Medium (4 vCPU)", "multiplier": 2},
-                        "large": {"label": "Large (8 vCPU)", "multiplier": 4},
-                    },
+                "end_date": {
+                    "type": "date",
+                    "label": "End Date",
+                    "info": "End date of the calculation period",
                 },
             },
         },
-        "traffic": {
-            "title": "Traffic",
+        "user_impressions": {
+            "title": "User Impressions",
             "fields": {
-                "monthly_users": {
+                "computer_impressions": {
                     "type": "number",
-                    "label": "Monthly Active Users",
-                    "emission_factor": 0.00001,
+                    "label": "Computer Impressions",
+                    "info": "Impressions on desktop/laptop computers",
                 },
-                "page_size": {
+                "smartphone_impressions": {
                     "type": "number",
-                    "label": "Average Page Size (KB)",
-                    "emission_factor": 0.000002,
+                    "label": "Smartphone Impressions",
+                    "info": "Impressions on smartphones",
                 },
-                "pages_per_visit": {
+                "tablet_impressions": {
                     "type": "number",
-                    "label": "Average Pages per Visit",
-                    "emission_factor": 0.000005,
+                    "label": "Tablet Impressions",
+                    "info": "Impressions on tablets",
+                },
+                "tv_impressions": {
+                    "type": "number",
+                    "label": "TV Impressions",
+                    "info": "Impressions on TVs",
+                },
+                "ereader_impressions": {
+                    "type": "number",
+                    "label": "E-Reader Impressions",
+                    "info": "Impressions on E-Readers",
                 },
             },
         },
-        "storage": {
-            "title": "Storage",
+        "product_usage": {
+            "title": "Product Usage",
             "fields": {
-                "database_size": {
+                "product_size": {
                     "type": "number",
-                    "label": "Database Size (GB)",
-                    "emission_factor": 0.0002,
+                    "label": "Size of Product (KB)",
+                    "info": "Size of the product in kilobytes",
                 },
-                "storage_size": {
+                "time_on_product": {
                     "type": "number",
-                    "label": "File Storage Size (GB)",
-                    "emission_factor": 0.0001,
+                    "label": "Time on Product (Hours)",
+                    "info": "Total time spent on the product in hours",
                 },
-                "backup_frequency": {
-                    "type": "select",
-                    "label": "Backup Frequency",
-                    "options": {
-                        "daily": {"label": "Daily", "multiplier": 30},
-                        "weekly": {"label": "Weekly", "multiplier": 4},
-                        "monthly": {"label": "Monthly", "multiplier": 1},
-                    },
+                "video_viewing_time": {
+                    "type": "number",
+                    "label": "Video Viewing Time (Hours)",
+                    "info": "Total video viewing time in hours",
+                },
+                "number_of_downloads": {
+                    "type": "number",
+                    "label": "Number of Downloads",
+                    "info": "Total number of downloads",
+                },
+                "download_size": {
+                    "type": "number",
+                    "label": "Download Size (KB)",
+                    "info": "Average size of each download in kilobytes",
+                },
+                "download_service_time": {
+                    "type": "number",
+                    "label": "Download Service Time (Hours)",
+                    "info": "Time used for download services in hours",
+                },
+            },
+        },
+        "advertising": {
+            "title": "Advertising",
+            "fields": {
+                "ad_impressions": {
+                    "type": "number",
+                    "label": "Ad Impressions",
+                    "info": "Number of ad impressions",
+                },
+                "ad_emission_factor": {
+                    "type": "number",
+                    "label": "Ad Emission Factor (gCO2e per 1000 AI)",
+                    "info": "Emission factor for advertising",
+                },
+            },
+        },
+        "data_center": {
+            "title": "Data Center",
+            "fields": {
+                "data_center_co2_emissions": {
+                    "type": "number",
+                    "label": "Data Center CO2 Emissions (kg CO2)",
+                    "info": "CO2 emissions from the data center",
+                },
+                "data_center_energy": {
+                    "type": "number",
+                    "label": "Data Center Energy Consumption (kWh)",
+                    "info": "Energy consumption of the data center",
+                },
+                "data_size": {
+                    "type": "number",
+                    "label": "Data Size (KB)",
+                    "info": "Total data size in kilobytes",
+                },
+                "data_center_total_spend": {
+                    "type": "number",
+                    "label": "Data Center Total Spend (Euro)",
+                    "info": "Total spending on data center services",
                 },
             },
         },
     }
 }
-
-# ########### FORM CONFIG ###########
-# FORM_CONFIG = {
-#     1: {
-#         "title": "Introduction",
-#         "description": """
-# Energy Consumption across the digital Value Chain
-
-# The largest energy consumers are typically data centers and network infrastructure, followed by end-user device consumption. Our calculation model focuses on these three, therefore category 1., 5., and 6. are not included.
-# Development and Design: Electricity consumption in offices and development environments.
-# Hosting and Data Processing: High electricity use in data centers (servers, cooling, networks).
-# Content Delivery: Energy for global networks and CDN infrastructure.
-# End-User Consumption: Power used by end-user devices and networking technology.
-# Maintenance and Updates: Electricity for updates and continuous integration.
-# Disposal: Energy for recycling and waste management.
-# In addition no hardware emissions are included in the model.
-#         """,
-#         "form_class": EmptyForm,
-#         "session_key": "basic_info",
-#     },
-#     2: {
-#         "title": "Product Overview",
-#         "description": "Enter basic information about your digital product",
-#         "form_class": DigitalProductForm,
-#         "session_key": "product_info",
-#     },
-#     3: {
-#         "title": "Hosting & Data Processing",
-#         "description": "Enter information about product usage and downloads",
-#         "form_class": UsageMetricsForm,
-#         "session_key": "usage_metrics",
-#     },
-#     4: {
-#         "title": "Content Delivery",
-#         "description": "Enter information about advertisements if applicable",
-#         "form_class": AdvertisementForm,
-#         "session_key": "ad_info",
-#     },
-#     5: {
-#         "title": "End-User Consumption",
-#         "description": "Enter information about your data center usage",
-#         "form_class": DataCenterForm,
-#         "session_key": "datacenter_info",
-#     },
-# }

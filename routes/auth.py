@@ -19,7 +19,7 @@ def login():
 
         if user and user.check_password(password):
             login_user(user)
-            return redirect(url_for("main.profile"))
+            return redirect(url_for("main.calc"))
         flash("Invalid username or password")
     return render_template("login.html")
 
@@ -27,7 +27,7 @@ def login():
 @auth.route("/register", methods=["GET", "POST"])
 def register():
     if current_user.is_authenticated:
-        return redirect(url_for("main.profile"))
+        return redirect(url_for("main.calc"))
 
     if request.method == "POST":
         username = request.form.get("username")
