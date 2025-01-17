@@ -1,5 +1,4 @@
 # config.py
-from forms import *
 import secrets
 
 
