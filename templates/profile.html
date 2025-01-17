@@ -1,0 +1,89 @@
+<!-- templates/profile.html -->
+{% extends "base.html" %}
+
+{% block title %}Profile - {{ current_user.username }}{% endblock %}
+
+{% block content %}
+<div class="max-w-4xl mx-auto">
+    <div class="grid md:grid-cols-3 gap-6">
+        <!-- Profile Card -->
+        <div class="card bg-base-100 shadow-xl md:col-span-1">
+            <div class="card-body items-center text-center">
+                <div class="avatar">
+                    <div class="w-24 rounded-full ring ring-primary ring-offset-base-100 ring-offset-2">
+                        <img src="https://api.dicebear.com/7.x/initials/svg?seed={{ current_user.username }}"
+                            alt="{{ current_user.username }}'s avatar" />
+                    </div>
+                </div>
+                <h2 class="card-title mt-4">{{ current_user.username }}</h2>
+                <p class="text-sm text-gray-500">{{ current_user.email }}</p>
+                <div class="divider"></div>
+                <div class="w-full">
+                    <a href="{{ url_for('main.calc') }}">
+                        <button class="btn btn-outline btn-primary btn-sm w-full">Edit Profile</button>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Stats and Activity -->
+        <div class="md:col-span-2 space-y-6">
+            <!-- Stats Cards -->
+            <div class="stats stats-vertical lg:stats-horizontal shadow w-full">
+                <div class="stat">
+                    <div class="stat-title">Carbon Saved</div>
+                    <div class="stat-value text-primary">89 kg</div>
+                    <div class="stat-desc">↗︎ 400 (22%)</div>
+                </div>
+
+                <div class="stat">
+                    <div class="stat-title">Activities</div>
+                    <div class="stat-value">42</div>
+                    <div class="stat-desc">Jan 1st - Feb 1st</div>
+                </div>
+
+                <div class="stat">
+                    <div class="stat-title">Efficiency</div>
+                    <div class="stat-value">86%</div>
+                    <div class="stat-desc">↗︎ 14%</div>
+                </div>
+            </div>
+
+            <!-- Recent Activity -->
+            <div class="card bg-base-100 shadow-xl">
+                <div class="card-body">
+                    <h3 class="card-title">Recent Activity</h3>
+                    <div class="overflow-x-auto">
+                        <table class="table table-zebra">
+                            <thead>
+                                <tr>
+                                    <th>Date</th>
+                                    <th>Activity</th>
+                                    <th>Carbon Saved</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Feb 1, 2025</td>
+                                    <td>Used public transport</td>
+                                    <td>2.5 kg</td>
+                                </tr>
+                                <tr>
+                                    <td>Jan 31, 2025</td>
+                                    <td>Remote work day</td>
+                                    <td>3.2 kg</td>
+                                </tr>
+                                <tr>
+                                    <td>Jan 30, 2025</td>
+                                    <td>Energy efficient appliances</td>
+                                    <td>1.8 kg</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

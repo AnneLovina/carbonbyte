@@ -1,0 +1,82 @@
+{% extends "base.html" %}
+
+{% block title %}Digital Product Carbon Calculator{% endblock %}
+
+{% block content %}
+<div class="max-w-4xl mx-auto">
+    <div class="card bg-base-100 shadow-xl">
+        <div class="card-body">
+            <h2 class="card-title text-2xl mb-6">Digital Product Carbon Calculator</h2>
+
+            <div class="tabs tabs-boxed mb-6">
+                {% for section_id, section in config.sections.items() %}
+                <a class="tab {% if loop.first %}tab-active{% endif %}" data-tab="{{ section_id }}">{{ section.title
+                    }}</a>
+                {% endfor %}
+            </div>
+
+            <form id="emissions-calculator" method="POST" action="{{ url_for('main.calc') }}">
+                {% for section_id, section in config.sections.items() %}
+                <div class="tab-content {% if not loop.first %}hidden{% endif %}" id="{{ section_id }}-content">
+                    {% if section.text %}
+                    <div class="prose lg:prose-xl mb-4">
+                        {{ section.text | safe }}
+                    </div>
+                    {% endif %}
+                    {% for field_id, field in section.fields.items() %}
+                    <div class="form-control mt-4">
+                        <label class="label">
+                            <span class="label-text">{{ field.label }} {% if field.info %}<span
+                                    class="tooltip tooltip-right" data-tip="{{ field.info }}"><i
+                                        class="fas fa-info-circle"></i></span>{% endif %}</span>
+                        </label>
+                        {% if field.type == 'select' %}
+                        <select class="select select-bordered w-full" name="{{ field_id }}">
+                            {% for option_id, option in field.options.items() %}
+                            <option value="{{ option_id }}">{{ option.label }}</option>
+                            {% endfor %}
+                        </select>
+                        {% elif field.type == 'url' %}
+                        <input type="text" name="{{ field_id }}" class="input input-bordered w-full" />
+                        {% else %}
+                        <input type="{{ field.type }}" name="{{ field_id }}" class="input input-bordered w-full" />
+                        {% endif %}
+                    </div>
+                    {% endfor %}
+                </div>
+                {% endfor %}
+
+                <div class="mt-6" id="submit-button-container" style="display: none;"> {# Initially hidden #}
+                    <button type="submit" class="btn btn-primary w-full">Calculate Emissions</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const tabs = document.querySelectorAll('.tab');
+        const tabContents = document.querySelectorAll('.tab-content');
+        const submitButtonContainer = document.getElementById('submit-button-container');
+
+        tabs.forEach(tab => {
+            tab.addEventListener('click', () => {
+                tabs.forEach(t => t.classList.remove('tab-active'));
+                tabContents.forEach(content => content.classList.add('hidden'));
+
+                tab.classList.add('tab-active');
+                const contentId = `${tab.getAttribute('data-tab')}-content`;
+                document.getElementById(contentId).classList.remove('hidden');
+
+                // Show button only if the last tab is active
+                if (tab === tabs[tabs.length - 1]) {
+                    submitButtonContainer.style.display = 'block';
+                } else {
+                    submitButtonContainer.style.display = 'none';
+                }
+            });
+        });
+    });
+</script>
+{% endblock %}
