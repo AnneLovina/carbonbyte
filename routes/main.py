@@ -19,7 +19,7 @@ def profile():
 
 
 @main.route("/calculator", methods=["GET", "POST"])
-@login_required
+# @login_required
 def calc():
     if request.method == "POST":
         results = calculate(request.form)
