@@ -23,5 +23,8 @@ def profile():
 def calc():
     if request.method == "POST":
         results = calculate(request.form)
-        return jsonify(results)
+        import json
+
+        raw_string = json.dumps(results, indent=4)
+        return render_template("results.html", raw=raw_string, **results)
     return render_template("calculator.html", config=CALCULATOR_CONFIG)

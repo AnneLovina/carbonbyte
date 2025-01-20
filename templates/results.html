@@ -1,0 +1,265 @@
+{% extends "base.html" %}
+
+{% block title %}Carbon Emissions Dashboard{% endblock %}
+
+{% block content %}
+<div class="max-w-6xl mx-auto p-8">
+    <div class="bg-white rounded-2xl shadow-xl p-8">
+        <h1 class="text-3xl font-bold text-gray-800 mb-2 text-center">Digital Carbon Footprint</h1>
+        <p class="text-gray-600 text-center mb-8">Track and understand your digital environmental impact</p>
+
+        <!-- Main Grid Layout -->
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-8">
+            <!-- Chart Section -->
+            <div class="bg-white rounded-xl p-6">
+                <canvas id="emissionsChart" class="w-full"></canvas>
+            </div>
+
+            <!-- Main Metrics Grid -->
+            <div class="grid grid-cols-2 gap-4">
+                <div class="bg-green-50 rounded-xl p-6" style="background-color: rgba(168, 230, 207, 0.2)">
+                    <h3 class="font-semibold text-gray-700 mb-2">Content Delivery</h3>
+                    <p class="text-3xl font-bold text-gray-800 mb-1">{{
+                        "%.1f"|format(content_delivery_emissions.fixed_line + content_delivery_emissions.mobile_line) }}
+                    </p>
+                    <p class="text-sm text-gray-600">kg CO₂e</p>
+                </div>
+
+                <div class="bg-orange-50 rounded-xl p-6" style="background-color: rgba(255, 211, 182, 0.2)">
+                    <h3 class="font-semibold text-gray-700 mb-2">End User Devices</h3>
+                    <p class="text-3xl font-bold text-gray-800 mb-1">{{ "%.1f"|format(end_user_devices.desktop_emissions
+                        + end_user_devices.laptop_emissions + end_user_devices.smartphone_emissions +
+                        end_user_devices.tablet_emissions) }}</p>
+                    <p class="text-sm text-gray-600">kg CO₂e</p>
+                </div>
+
+                <div class="bg-red-50 rounded-xl p-6" style="background-color: rgba(255, 170, 165, 0.2)">
+                    <h3 class="font-semibold text-gray-700 mb-2">Data Center</h3>
+                    <p class="text-3xl font-bold text-gray-800 mb-1">{{ "%.1f"|format(result_data_center) }}</p>
+                    <p class="text-sm text-gray-600">kg CO₂e</p>
+                </div>
+
+                <div class="bg-purple-50 rounded-xl p-6" style="background-color: rgba(219, 182, 226, 0.2)">
+                    <h3 class="font-semibold text-gray-700 mb-2">Advertising</h3>
+                    <p class="text-3xl font-bold text-gray-800 mb-1">{{ "%.1f"|format(result_advertising) }}</p>
+                    <p class="text-sm text-gray-600">kg CO₂e</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Detailed Breakdowns -->
+        <div class="space-y-4">
+            <!-- Content Delivery Details -->
+            <div class="border border-gray-200 rounded-xl overflow-hidden hover:shadow-md transition-shadow">
+                <button
+                    class="w-full px-6 py-4 bg-white hover:bg-gray-50 transition-colors flex items-center justify-between"
+                    onclick="toggleSection('contentDelivery')">
+                    <div class="flex items-center">
+                        <div class="w-3 h-3 rounded-full mr-3" style="background-color: #A8E6CF"></div>
+                        <span class="text-lg font-semibold text-gray-800">Content Delivery Details</span>
+                    </div>
+                    <svg class="w-5 h-5 transform transition-transform" id="contentDeliveryIcon"
+                        xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                    </svg>
+                </button>
+                <div class="hidden p-6 bg-gray-50" id="contentDeliveryContent">
+                    <div class="grid grid-cols-2 gap-6">
+                        <div>
+                            <h4 class="font-semibold mb-4 text-gray-700">Network Type</h4>
+                            <div class="space-y-3">
+                                <div class="flex justify-between">
+                                    <span class="text-gray-600">Fixed Line</span>
+                                    <span class="font-medium">{{ "%.2f"|format(content_delivery_emissions.fixed_line) }}
+                                        kg CO₂e</span>
+                                </div>
+                                <div class="flex justify-between">
+                                    <span class="text-gray-600">Mobile Line</span>
+                                    <span class="font-medium">{{ "%.2f"|format(content_delivery_emissions.mobile_line)
+                                        }} kg CO₂e</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div>
+                            <h4 class="font-semibold mb-4 text-gray-700">Energy Consumption</h4>
+                            <div class="space-y-3">
+                                <div class="flex justify-between">
+                                    <span class="text-gray-600">Fixed Line</span>
+                                    <span class="font-medium">{{ "%.2f"|format(content_delivery_energy.fixed_line) }}
+                                        kWh</span>
+                                </div>
+                                <div class="flex justify-between">
+                                    <span class="text-gray-600">Mobile Line</span>
+                                    <span class="font-medium">{{ "%.2f"|format(content_delivery_energy.mobile_line) }}
+                                        kWh</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- End User Devices Details -->
+            <div class="border border-gray-200 rounded-xl overflow-hidden hover:shadow-md transition-shadow">
+                <button
+                    class="w-full px-6 py-4 bg-white hover:bg-gray-50 transition-colors flex items-center justify-between"
+                    onclick="toggleSection('endUserDevices')">
+                    <div class="flex items-center">
+                        <div class="w-3 h-3 rounded-full mr-3" style="background-color: #FFD3B6"></div>
+                        <span class="text-lg font-semibold text-gray-800">Device Breakdown</span>
+                    </div>
+                    <svg class="w-5 h-5 transform transition-transform" id="endUserDevicesIcon"
+                        xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                    </svg>
+                </button>
+                <div class="hidden p-6 bg-gray-50" id="endUserDevicesContent">
+                    <div class="grid grid-cols-2 gap-6">
+                        <div>
+                            <h4 class="font-semibold mb-4 text-gray-700">Emissions by Device</h4>
+                            <div class="space-y-3">
+                                <div class="flex justify-between">
+                                    <span class="text-gray-600">Desktop</span>
+                                    <span class="font-medium">{{ "%.2f"|format(end_user_devices.desktop_emissions) }} kg
+                                        CO₂e</span>
+                                </div>
+                                <div class="flex justify-between">
+                                    <span class="text-gray-600">Laptop</span>
+                                    <span class="font-medium">{{ "%.2f"|format(end_user_devices.laptop_emissions) }} kg
+                                        CO₂e</span>
+                                </div>
+                                <div class="flex justify-between">
+                                    <span class="text-gray-600">Smartphone</span>
+                                    <span class="font-medium">{{ "%.2f"|format(end_user_devices.smartphone_emissions) }}
+                                        kg CO₂e</span>
+                                </div>
+                                <div class="flex justify-between">
+                                    <span class="text-gray-600">Tablet</span>
+                                    <span class="font-medium">{{ "%.2f"|format(end_user_devices.tablet_emissions) }} kg
+                                        CO₂e</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div>
+                            <h4 class="font-semibold mb-4 text-gray-700">Energy Consumption</h4>
+                            <div class="space-y-3">
+                                <div class="flex justify-between">
+                                    <span class="text-gray-600">Desktop</span>
+                                    <span class="font-medium">{{ "%.2f"|format(end_user_devices.desktop_energy) }}
+                                        kWh</span>
+                                </div>
+                                <div class="flex justify-between">
+                                    <span class="text-gray-600">Laptop</span>
+                                    <span class="font-medium">{{ "%.2f"|format(end_user_devices.laptop_energy) }}
+                                        kWh</span>
+                                </div>
+                                <div class="flex justify-between">
+                                    <span class="text-gray-600">Smartphone</span>
+                                    <span class="font-medium">{{ "%.2f"|format(end_user_devices.smartphone_energy) }}
+                                        kWh</span>
+                                </div>
+                                <div class="flex justify-between">
+                                    <span class="text-gray-600">Tablet</span>
+                                    <span class="font-medium">{{ "%.2f"|format(end_user_devices.tablet_energy) }}
+                                        kWh</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="max-w-2xl mx-auto p-6 bg-gray-50 rounded-lg shadow-sm">
+    <pre class="whitespace-pre-wrap font-mono text-sm text-gray-800 overflow-x-auto">
+        {{ raw | safe }}
+    </pre>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
+<script>
+    // Toggle section visibility with animation
+    function toggleSection(sectionId) {
+        const content = document.getElementById(sectionId + 'Content');
+        const icon = document.getElementById(sectionId + 'Icon');
+
+        if (content.classList.contains('hidden')) {
+            content.classList.remove('hidden');
+            content.style.opacity = '0';
+            icon.classList.add('rotate-180');
+
+            anime({
+                targets: content,
+                opacity: 1,
+                height: [0, content.scrollHeight],
+                duration: 300,
+                easing: 'easeOutCubic'
+            });
+        } else {
+            anime({
+                targets: content,
+                opacity: 0,
+                height: 0,
+                duration: 300,
+                easing: 'easeOutCubic',
+                complete: function () {
+                    content.classList.add('hidden');
+                    icon.classList.remove('rotate-180');
+                }
+            });
+        }
+    }
+
+    // Create pie chart
+    document.addEventListener('DOMContentLoaded', function () {
+        const ctx = document.getElementById('emissionsChart').getContext('2d');
+
+        // Calculate totals
+        const contentDeliveryTotal = {{ content_delivery_emissions.fixed_line + content_delivery_emissions.mobile_line
+    }};
+    const endUserDevicesTotal = {{ end_user_devices.desktop_emissions + end_user_devices.laptop_emissions + end_user_devices.smartphone_emissions + end_user_devices.tablet_emissions }};
+    const dataCenterEmissions = {{ result_data_center }};
+    const advertisingEmissions = {{ result_advertising }};
+
+    new Chart(ctx, {
+        type: 'doughnut',
+        data: {
+            labels: ['Content Delivery', 'End User Devices', 'Data Center', 'Advertising'],
+            datasets: [{
+                data: [contentDeliveryTotal, endUserDevicesTotal, dataCenterEmissions, advertisingEmissions],
+                backgroundColor: [
+                    '#A8E6CF',  // Soft mint green
+                    '#FFD3B6',  // Pale peach
+                    '#FFAAA5',  // Soft coral
+                    '#DBB6E2'   // Gentle lavender
+                ],
+                borderColor: '#FFFFFF',
+                borderWidth: 2
+            }]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+                legend: {
+                    position: 'bottom',
+                    labels: {
+                        padding: 20,
+                        font: {
+                            size: 14
+                        }
+                    }
+                }
+            },
+            cutout: '65%',
+            animation: {
+                animateScale: true,
+                animateRotate: true
+            }
+        }
+    });
+    });
+</script>
+{% endblock %}
