@@ -18,7 +18,7 @@ def profile():
     return render_template("profile.html")
 
 
-@main.route("/calulator", methods=["GET", "POST"])
+@main.route("/calculator", methods=["GET", "POST"])
 @login_required
 def calc():
     if request.method == "POST":
