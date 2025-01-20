@@ -45,7 +45,7 @@ CALCULATOR_CONFIG = {
                 "product_type": {
                     "type": "select",
                     "label": "Type of digital Product",
-                    "info": "Select the type of your product",
+                    "info": "Select the type of your product.",
                     "options": {
                         "website": {"label": "Website"},
                         "app": {"label": "App"},
