@@ -40,7 +40,7 @@ CALCULATOR_CONFIG = {
                 "product_name": {
                     "type": "url",
                     "label": "Name of your digital Product",
-                    "info": "e.g. yourfootprint.de or Digtal Podcast",
+                    "info": "e.g. carbonbyte.org or Digtal Podcast",
                 },
                 "product_type": {
                     "type": "select",
