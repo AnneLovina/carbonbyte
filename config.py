@@ -86,38 +86,48 @@ CALCULATOR_CONFIG = {
                 },
             },
         },
-        "user_impressions": {
-            "title": "User Impressions",
+        "data_center": {
+            "title": "Data Center",
             "fields": {
-                "computer_impressions": {
+                "data_center_co2_emissions": {
                     "type": "number",
-                    "label": "Computer Impressions",
-                    "info": "Impressions on desktop/laptop computers",
+                    "label": "Data Center CO2 Emissions (kg CO2)",
+                    "info": "CO2 emissions from the data center",
                 },
-                "smartphone_impressions": {
+                "data_center_energy": {
                     "type": "number",
-                    "label": "Smartphone Impressions",
-                    "info": "Impressions on smartphones",
+                    "label": "Data Center Energy Consumption (kWh)",
+                    "info": "Energy consumption of the data center",
                 },
-                "tablet_impressions": {
+                "data_size": {
                     "type": "number",
-                    "label": "Tablet Impressions",
-                    "info": "Impressions on tablets",
+                    "label": "Data Size (KB)",
+                    "info": "Total data size in kilobytes",
                 },
-                "tv_impressions": {
+                "data_center_total_spend": {
                     "type": "number",
-                    "label": "TV Impressions",
-                    "info": "Impressions on TVs",
-                },
-                "ereader_impressions": {
-                    "type": "number",
-                    "label": "E-Reader Impressions",
-                    "info": "Impressions on E-Readers",
+                    "label": "Data Center Total Spend (Euro)",
+                    "info": "Total spending on data center services",
                 },
             },
         },
-        "product_usage": {
-            "title": "Product Usage",
+        "advertising": {
+            "title": "Advertising",
+            "fields": {
+                "ad_impressions": {
+                    "type": "number",
+                    "label": "Ad Impressions",
+                    "info": "Number of ad impressions",
+                },
+                "ad_emission_factor": {
+                    "type": "number",
+                    "label": "Ad Emission Factor (gCO2e per 1000 AI)",
+                    "info": "Emission factor for advertising",
+                },
+            },
+        },
+        "analytics": {
+            "title": "Analytics",
             "fields": {
                 "product_size": {
                     "type": "number",
@@ -149,45 +159,30 @@ CALCULATOR_CONFIG = {
                     "label": "Download Service Time (Hours)",
                     "info": "Time used for download services in hours",
                 },
-            },
-        },
-        "advertising": {
-            "title": "Advertising",
-            "fields": {
-                "ad_impressions": {
+                "computer_impressions": {
                     "type": "number",
-                    "label": "Ad Impressions",
-                    "info": "Number of ad impressions",
+                    "label": "Computer Impressions",
+                    "info": "Impressions on desktop/laptop computers",
                 },
-                "ad_emission_factor": {
+                "smartphone_impressions": {
                     "type": "number",
-                    "label": "Ad Emission Factor (gCO2e per 1000 AI)",
-                    "info": "Emission factor for advertising",
+                    "label": "Smartphone Impressions",
+                    "info": "Impressions on smartphones",
                 },
-            },
-        },
-        "data_center": {
-            "title": "Data Center",
-            "fields": {
-                "data_center_co2_emissions": {
+                "tablet_impressions": {
                     "type": "number",
-                    "label": "Data Center CO2 Emissions (kg CO2)",
-                    "info": "CO2 emissions from the data center",
+                    "label": "Tablet Impressions",
+                    "info": "Impressions on tablets",
                 },
-                "data_center_energy": {
+                "tv_impressions": {
                     "type": "number",
-                    "label": "Data Center Energy Consumption (kWh)",
-                    "info": "Energy consumption of the data center",
+                    "label": "TV Impressions",
+                    "info": "Impressions on TVs",
                 },
-                "data_size": {
+                "ereader_impressions": {
                     "type": "number",
-                    "label": "Data Size (KB)",
-                    "info": "Total data size in kilobytes",
-                },
-                "data_center_total_spend": {
-                    "type": "number",
-                    "label": "Data Center Total Spend (Euro)",
-                    "info": "Total spending on data center services",
+                    "label": "E-Reader Impressions",
+                    "info": "Impressions on E-Readers",
                 },
             },
         },
