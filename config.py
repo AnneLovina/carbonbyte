@@ -186,6 +186,25 @@ CALCULATOR_CONFIG = {
                 },
             },
         },
+        "results": {
+            "title": "Review & Submit",
+            "text": """
+            <h2 class="text-2xl font-bold text-gray-800 mb-4">Please Review Your Inputs</h2>
+            
+            <p class="text-gray-700 mb-4">
+                Before submitting, please carefully review all the values you've entered in the previous sections. 
+                Make sure all numbers and selections are accurate, as they directly impact your carbon footprint calculation.
+            </p>
+
+            <div class="bg-yellow-50 border-l-4 border-yellow-400 p-4 mb-4">
+                <p class="text-yellow-700">
+                    <strong>Important:</strong> Once you're confident that all entries are correct, 
+                    click the submit button below to see your detailed carbon footprint results.
+                </p>
+            </div>
+            """,
+            "fields": {},
+        },
     }
 }
 
