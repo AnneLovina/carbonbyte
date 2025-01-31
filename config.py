@@ -128,63 +128,81 @@ CALCULATOR_CONFIG = {
         },
         "analytics": {
             "title": "Analytics",
-            "fields": {
-                "product_size": {
-                    "type": "number",
-                    "label": "Size of Product (KB)",
-                    "info": "Size of the product in kilobytes",
+            "sections": {
+                "basic_metrics": {
+                    "title": "Basic Product Metrics",
+                    "collapsible": True,
+                    "fields": {
+                        "product_size": {
+                            "type": "number",
+                            "label": "Size of Product (KB)",
+                            "info": "Size of the product in kilobytes",
+                        },
+                        "time_on_product": {
+                            "type": "number",
+                            "label": "Time on Product (Hours)",
+                            "info": "Total time spent on the product in hours",
+                        },
+                        "video_viewing_time": {
+                            "type": "number",
+                            "label": "Video Viewing Time (Hours)",
+                            "info": "Total video viewing time in hours",
+                        },
+                    }
                 },
-                "time_on_product": {
-                    "type": "number",
-                    "label": "Time on Product (Hours)",
-                    "info": "Total time spent on the product in hours",
+                "download_metrics": {
+                    "title": "Download Statistics",
+                    "collapsible": True,
+                    "fields": {
+                        "number_of_downloads": {
+                            "type": "number",
+                            "label": "Number of Downloads",
+                            "info": "Total number of downloads",
+                        },
+                        "download_size": {
+                            "type": "number",
+                            "label": "Download Size (KB)",
+                            "info": "Average size of each download in kilobytes",
+                        },
+                        "download_service_time": {
+                            "type": "number",
+                            "label": "Download Service Time (Hours)",
+                            "info": "Time used for download services in hours",
+                        },
+                    }
                 },
-                "video_viewing_time": {
-                    "type": "number",
-                    "label": "Video Viewing Time (Hours)",
-                    "info": "Total video viewing time in hours",
-                },
-                "number_of_downloads": {
-                    "type": "number",
-                    "label": "Number of Downloads",
-                    "info": "Total number of downloads",
-                },
-                "download_size": {
-                    "type": "number",
-                    "label": "Download Size (KB)",
-                    "info": "Average size of each download in kilobytes",
-                },
-                "download_service_time": {
-                    "type": "number",
-                    "label": "Download Service Time (Hours)",
-                    "info": "Time used for download services in hours",
-                },
-                "computer_impressions": {
-                    "type": "number",
-                    "label": "Computer Impressions",
-                    "info": "Impressions on desktop/laptop computers",
-                },
-                "smartphone_impressions": {
-                    "type": "number",
-                    "label": "Smartphone Impressions",
-                    "info": "Impressions on smartphones",
-                },
-                "tablet_impressions": {
-                    "type": "number",
-                    "label": "Tablet Impressions",
-                    "info": "Impressions on tablets",
-                },
-                "tv_impressions": {
-                    "type": "number",
-                    "label": "TV Impressions",
-                    "info": "Impressions on TVs",
-                },
-                "ereader_impressions": {
-                    "type": "number",
-                    "label": "E-Reader Impressions",
-                    "info": "Impressions on E-Readers",
-                },
-            },
+                "device_impressions": {
+                    "title": "Device-specific Impressions",
+                    "collapsible": True,
+                    "fields": {
+                        "computer_impressions": {
+                            "type": "number",
+                            "label": "Computer Impressions",
+                            "info": "Impressions on desktop/laptop computers",
+                        },
+                        "smartphone_impressions": {
+                            "type": "number",
+                            "label": "Smartphone Impressions",
+                            "info": "Impressions on smartphones",
+                        },
+                        "tablet_impressions": {
+                            "type": "number",
+                            "label": "Tablet Impressions",
+                            "info": "Impressions on tablets",
+                        },
+                        "tv_impressions": {
+                            "type": "number",
+                            "label": "TV Impressions",
+                            "info": "Impressions on TVs",
+                        },
+                        "ereader_impressions": {
+                            "type": "number",
+                            "label": "E-Reader Impressions",
+                            "info": "Impressions on E-Readers",
+                        },
+                    }
+                }
+            }
         },
         "results": {
             "title": "Review & Submit",
