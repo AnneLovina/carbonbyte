@@ -26,16 +26,41 @@ def index():
 @main.route("/profile")
 @login_required
 def profile():
-    return render_template("profile.html")
+    calculations = Calculation.query.filter_by(user_id=current_user.id).order_by(Calculation.created_at.desc()).all()
+    return render_template("profile.html", calculations=calculations)
 
+@main.route("/calculation/delete/<int:id>")
+@login_required
+def delete_calculation(id):
+    calculation = Calculation.query.get_or_404(id)
+    if calculation.user_id != current_user.id:
+        abort(403)
+    db.session.delete(calculation)
+    db.session.commit()
+    return redirect(url_for('main.profile'))
+
+
+# Add to existing imports
+from models.calculation import Calculation
+from flask_login import current_user
+from extensions import db
 
 @main.route("/calculator", methods=["GET", "POST"])
-# @login_required
+@login_required
 def calc():
     if request.method == "POST":
         results = calculate(request.form)
-        import json
-
+        
+        # Create new calculation record
+        calculation = Calculation(
+            data=results,
+            user_id=current_user.id if not current_user.is_anonymous else None
+        )
+        
+        # Save to database
+        db.session.add(calculation)
+        db.session.commit()
+        
         raw_string = json.dumps(results, indent=4)
         return render_template("results.html", raw=raw_string, **results)
     return render_template("calculator.html", config=CALCULATOR_CONFIG)

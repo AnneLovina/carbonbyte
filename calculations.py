@@ -3,24 +3,29 @@ from datetime import datetime
 
 
 def calculate(inputs):
+    # Create a copy of inputs to avoid modifying the original
     inputs = {**inputs}
 
-    inputs["data_center_co2_emissions"] = float(inputs["data_center_co2_emissions"])
-    inputs["ad_impressions"] = float(inputs["ad_impressions"])
-    inputs["ad_emission_factor"] = float(inputs["ad_emission_factor"])
-    inputs["product_size"] = float(inputs["product_size"])
-    inputs["time_on_product"] = float(inputs["time_on_product"])
-    inputs["video_viewing_time"] = float(inputs["video_viewing_time"])
-    inputs["number_of_downloads"] = float(inputs["number_of_downloads"])
-    inputs["download_size"] = float(inputs["download_size"])
-    inputs["download_service_time"] = float(inputs["download_service_time"])
-    inputs["computer_impressions"] = float(inputs["computer_impressions"])
-    inputs["smartphone_impressions"] = float(inputs["smartphone_impressions"])
-    inputs["tablet_impressions"] = float(inputs["tablet_impressions"])
-    inputs["tv_impressions"] = float(inputs["tv_impressions"])
-    inputs["ereader_impressions"] = float(inputs["ereader_impressions"])
+    # Convert numeric inputs to float
+    numeric_fields = [
+        "data_center_co2_emissions", "ad_impressions", "ad_emission_factor",
+        "product_size", "time_on_product", "video_viewing_time",
+        "number_of_downloads", "download_size", "download_service_time",
+        "computer_impressions", "smartphone_impressions", "tablet_impressions",
+        "tv_impressions", "ereader_impressions"
+    ]
+    
+    for field in numeric_fields:
+        inputs[field] = float(inputs[field])
 
-    result = {}
+    # Initialize result with basic information
+    result = {
+        "product_name": inputs["product_name"],
+        "product_type": inputs["product_type"],
+        "country": inputs["country"],
+        "start_date": inputs["start_date"],
+        "end_date": inputs["end_date"]
+    }
 
     emission_factor = P.COUNTRY_CARBON_INTENSITY.get(inputs["country"].upper())
 

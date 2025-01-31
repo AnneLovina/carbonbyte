@@ -4,84 +4,112 @@
 {% block title %}Profile - {{ current_user.username }}{% endblock %}
 
 {% block content %}
-<div class="my-8 max-w-4xl mx-auto">
-    <div class="grid md:grid-cols-3 gap-6">
-        <!-- Profile Card -->
-        <div class="card bg-base-100 shadow-xl md:col-span-1">
-            <div class="card-body items-center text-center">
+<div class="container mx-auto px-4 py-8 max-w-7xl">
+    <!-- Profile Header -->
+    <div class="mb-8 bg-base-100 rounded-box shadow-xl p-6">
+        <div class="flex flex-col md:flex-row items-center gap-6">
+            <!-- Avatar and User Info -->
+            <div class="flex flex-col items-center md:items-start">
                 <div class="avatar">
                     <div class="w-24 rounded-full ring ring-primary ring-offset-base-100 ring-offset-2">
                         <img src="https://api.dicebear.com/7.x/initials/svg?seed={{ current_user.username }}"
                             alt="{{ current_user.username }}'s avatar" />
                     </div>
                 </div>
-                <h2 class="card-title mt-4">{{ current_user.username }}</h2>
-                <p class="text-sm text-gray-500">{{ current_user.email }}</p>
-                <div class="divider"></div>
-                <div class="w-full">
-                    <a href="{{ url_for('main.calc') }}">
-                        <button class="btn btn-outline btn-primary btn-sm w-full">Start Calculation</button>
-                    </a>
-                </div>
-            </div>
-        </div>
-
-        <!-- Stats and Activity -->
-        <div class="md:col-span-2 space-y-6">
-            <!-- Stats Cards -->
-            <div class="stats stats-vertical lg:stats-horizontal shadow w-full">
-                <div class="stat">
-                    <div class="stat-title">Carbon Saved</div>
-                    <div class="stat-value text-primary">89 kg</div>
-                    <div class="stat-desc">↗︎ 400 (22%)</div>
-                </div>
-
-                <div class="stat">
-                    <div class="stat-title">Activities</div>
-                    <div class="stat-value">42</div>
-                    <div class="stat-desc">Jan 1st - Feb 1st</div>
-                </div>
-
-                <div class="stat">
-                    <div class="stat-title">Efficiency</div>
-                    <div class="stat-value">86%</div>
-                    <div class="stat-desc">↗︎ 14%</div>
-                </div>
+                <h2 class="text-2xl font-bold mt-4">{{ current_user.username }}</h2>
+                <p class="text-gray-500">{{ current_user.email }}</p>
             </div>
 
-            <!-- Recent Activity -->
-            <div class="card bg-base-100 shadow-xl">
-                <div class="card-body">
-                    <h3 class="card-title">Recent Activity</h3>
-                    <div class="overflow-x-auto">
-                        <table class="table table-zebra">
-                            <thead>
-                                <tr>
-                                    <th>Date</th>
-                                    <th>Activity</th>
-                                    <th>Carbon Saved</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>Feb 1, 2025</td>
-                                    <td>Used public transport</td>
-                                    <td>2.5 kg</td>
-                                </tr>
-                                <tr>
-                                    <td>Jan 31, 2025</td>
-                                    <td>Remote work day</td>
-                                    <td>3.2 kg</td>
-                                </tr>
-                                <tr>
-                                    <td>Jan 30, 2025</td>
-                                    <td>Energy efficient appliances</td>
-                                    <td>1.8 kg</td>
-                                </tr>
-                            </tbody>
-                        </table>
+            <!-- Stats -->
+            <div class="flex-grow">
+                <div class="stats stats-vertical md:stats-horizontal shadow w-full">
+                    <div class="stat">
+                        <div class="stat-title">Total Calculations</div>
+                        <div class="stat-value text-primary">{{ calculations|length }}</div>
+                        <div class="stat-desc">All time</div>
+                    </div>
+                    <div class="stat">
+                        <div class="stat-title">Latest Calculation</div>
+                        <div class="stat-value text-secondary">
+                            {% if calculations %}
+                                {{ calculations[0].created_at.strftime('%Y-%m-%d') }}
+                            {% else %}
+                                -
+                            {% endif %}
+                        </div>
                     </div>
                 </div>
+            </div>
+
+            <!-- Action Button -->
+            <div class="w-full md:w-auto">
+                <a href="{{ url_for('main.calc') }}" class="btn btn-primary w-full md:w-auto">
+                    <i class="fas fa-plus mr-2"></i>New Calculation
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Calculations Table -->
+    <div class="bg-base-100 rounded-box shadow-xl">
+        <div class="p-6">
+            <h3 class="text-2xl font-bold mb-6">Calculation History</h3>
+            <div class="overflow-x-auto">
+                <table class="table w-full">
+                    <thead>
+                        <tr>
+                            <th>Date</th>
+                            <th>Product Name</th>
+                            <th>Type</th>
+                            <th>Country</th>
+                            <th class="text-right">Total Emissions</th>
+                            <th class="text-center">Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for calc in calculations %}
+                        <tr class="hover">
+                            <td>{{ calc.created_at.strftime('%Y-%m-%d %H:%M') }}</td>
+                            <td>{{ calc.data.product_name }}</td>
+                            <td>{{ calc.data.product_type|title }}</td>
+                            <td>{{ calc.data.country|title }}</td>
+                            <td class="text-right">
+                                <span class="font-mono">
+                                    {{ "%.2f"|format(calc.data.result_data_center + 
+                                    calc.data.result_advertising + 
+                                    calc.data.content_delivery_emissions.fixed_line + 
+                                    calc.data.content_delivery_emissions.mobile_line) }}
+                                </span>
+                                <span class="text-gray-500">kg CO₂e</span>
+                            </td>
+                            <td>
+                                <div class="flex justify-center gap-2">
+                                    <a href="{{ url_for('main.download_pdf', data=calc.data|tojson) }}" 
+                                       class="btn btn-sm btn-ghost tooltip" data-tip="Download PDF">
+                                        <i class="fas fa-file-pdf text-red-500"></i>
+                                    </a>
+                                    <a href="{{ url_for('main.download_excel', data=calc.data|tojson) }}" 
+                                       class="btn btn-sm btn-ghost tooltip" data-tip="Download Excel">
+                                        <i class="fas fa-file-excel text-green-500"></i>
+                                    </a>
+                                    <a href="{{ url_for('main.delete_calculation', id=calc.id) }}" 
+                                       class="btn btn-sm btn-ghost tooltip" data-tip="Delete"
+                                       onclick="return confirm('Are you sure you want to delete this calculation?')">
+                                        <i class="fas fa-trash text-error"></i>
+                                    </a>
+                                </div>
+                            </td>
+                        </tr>
+                        {% else %}
+                        <tr>
+                            <td colspan="6" class="text-center py-8 text-gray-500">
+                                <i class="fas fa-calculator text-4xl mb-4 block"></i>
+                                No calculations yet. Start by creating your first calculation!
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
             </div>
         </div>
     </div>

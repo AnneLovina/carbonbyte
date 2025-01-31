@@ -19,6 +19,10 @@ def create_app():
     login_manager.init_app(app)
     login_manager.login_view = "auth.login"
 
+    # Import models here to ensure they're registered with SQLAlchemy
+    from models.user import User
+    from models.calculation import Calculation
+
     @login_manager.user_loader
     def load_user(user_id):
         return User.query.get(int(user_id))
