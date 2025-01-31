@@ -1,0 +1,156 @@
+{% extends "base.html" %}
+
+{% block title %}CarbonByte - Digital Carbon Footprint Calculator{% endblock %}
+
+{% block content %}
+<!-- Hero Section -->
+<div class="bg-gradient-to-b from-[#F3E5D7] to-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+        <div class="grid md:grid-cols-2 gap-8 items-center">
+            <div class="text-left">
+                <h1 class="text-4xl md:text-5xl font-bold text-gray-900 mb-4">{{ config.hero.title }}</h1>
+                <p class="text-xl text-gray-600 mb-6 max-w-xl">{{ config.hero.description }}</p>
+                <a href="{{ url_for('auth.login') }}"
+                    class="inline-flex items-center px-8 py-4 text-lg font-medium rounded-md text-white bg-green-500 hover:bg-green-600 transform hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-xl">
+                    Try the Calculator
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 ml-2" viewBox="0 0 20 20"
+                        fill="currentColor">
+                        <path fill-rule="evenodd"
+                            d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z"
+                            clip-rule="evenodd" />
+                    </svg>
+                </a>
+            </div>
+            <div
+                class="bg-white rounded-xl shadow-lg p-6 transform hover:scale-[1.02] transition-transform duration-300">
+                <h3 class="text-xl font-semibold text-gray-800 mb-4">Carbon Emissions Breakdown</h3>
+                <div class="h-64 relative">
+                    <canvas id="exampleChart"></canvas>
+                </div>
+                <p class="text-sm text-gray-500 mt-4 text-center">Real-time visualization of your digital carbon
+                    footprint</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Key Features Section -->
+<div class="py-16 bg-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+            {% for feature in config.features %}
+            <div class="p-6 rounded-lg transform hover:scale-105 transition-transform duration-300 shadow-sm hover:shadow-md"
+                style="background-color: {% if loop.index == 1 %}rgba(168, 230, 207, 0.2){% elif loop.index == 2 %}rgba(255, 211, 182, 0.2){% else %}rgba(255, 170, 165, 0.2){% endif %}">
+                <h3 class="text-xl font-semibold text-gray-900 mb-3">{{ feature.title }}</h3>
+                <p class="text-gray-600">{{ feature.description }}</p>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+
+<!-- Value Chain Section -->
+<div class="py-16 bg-[#F9F6F3]">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <h2 class="text-3xl font-bold text-gray-900 mb-8 text-center">{{ config.value_chain.title }}</h2>
+        <div class="prose lg:prose-xl mx-auto">
+            <p class="text-gray-600 mb-6">{{ config.value_chain.description }}</p>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mt-8">
+                {% for section in config.value_chain.sections %}
+                <div class="bg-white p-6 rounded-lg shadow-sm hover:shadow-md transition-shadow duration-300">
+                    <h3 class="text-xl font-semibold text-gray-900 mb-3">{{ section.title }}</h3>
+                    <p class="text-gray-600">{{ section.description }}</p>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- FAQ Section -->
+<div class="py-16 bg-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <h2 class="text-3xl font-bold text-gray-900 mb-8 text-center">Frequently Asked Questions</h2>
+        <div class="space-y-4 max-w-4xl mx-auto">
+            {% for item in config.faq %}
+            <div class="border border-gray-200 rounded-lg hover:border-[#D8C3A5] transition-colors duration-300">
+                <button class="w-full text-left px-6 py-4 focus:outline-none" onclick="toggleFAQ(this)">
+                    <div class="flex justify-between items-center">
+                        <span class="font-medium text-gray-900">{{ item.question }}</span>
+                        <svg class="w-5 h-5 transform transition-transform duration-200" fill="none"
+                            stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7">
+                            </path>
+                        </svg>
+                    </div>
+                </button>
+                <div class="hidden px-6 pb-4">
+                    <p class="text-gray-600">{{ item.answer }}</p>
+                    {% if item.list %}
+                    <ul class="list-disc ml-6 mt-2 text-gray-600">
+                        {% for item in item.list %}
+                        <li>{{ item }}</li>
+                        {% endfor %}
+                    </ul>
+                    {% endif %}
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+
+<!-- Scripts -->
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+    // FAQ Toggle Script
+    function toggleFAQ(button) {
+        const content = button.nextElementSibling;
+        const arrow = button.querySelector('svg');
+        content.classList.toggle('hidden');
+        arrow.classList.toggle('rotate-180');
+    }
+
+    // Example Chart
+    document.addEventListener('DOMContentLoaded', function () {
+        const ctx = document.getElementById('exampleChart').getContext('2d');
+        new Chart(ctx, {
+            type: 'doughnut',
+            data: {
+                labels: ['Content Delivery', 'End User Devices', 'Data Center', 'Advertising'],
+                datasets: [{
+                    data: [30, 25, 35, 10],
+                    backgroundColor: [
+                        '#A8E6CF',  // Soft mint green
+                        '#FFD3B6',  // Pale peach
+                        '#FFAAA5',  // Soft coral
+                        '#DBB6E2'   // Gentle lavender
+                    ],
+                    borderColor: '#FFFFFF',
+                    borderWidth: 2
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        position: 'bottom',
+                        labels: {
+                            padding: 20,
+                            font: {
+                                size: 14
+                            }
+                        }
+                    }
+                },
+                cutout: '65%',
+                animation: {
+                    animateScale: true,
+                    animateRotate: true
+                }
+            }
+        });
+    });
+</script>
+{% endblock %}
