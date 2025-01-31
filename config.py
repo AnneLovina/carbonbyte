@@ -236,7 +236,7 @@ LEGAL_CONFIG =  {
 LANDING_PAGE_CONFIG = {
     "hero": {
         "title": "Measure Your Digital Carbon Footprint",
-        "description": "Hey there! Welcome to CarbonByte, the tool that helps you measure and understand the carbon emissions of your digital products. Most companies focus only on data center emissions, but did you know that end-user devices and content delivery also contribute significantly to your carbon footprint? CarbonByte goes beyond the basics to give you a more complete picture of your digital impact.",
+        "description": "Hey there! :) Welcome to CarbonByte, the tool that helps you measure and understand the carbon emissions of your digital products. Most companies focus only on data center emissions, but did you know that end-user devices and content delivery also contribute significantly to your carbon footprint? CarbonByte goes beyond the basics to give you a more complete picture of your digital impact.",
         "sub_description": "With our calculator, you can analyze emissions across key phases like content delivery, user consumption, and maintenance, empowering you to make data-driven decisions for a more sustainable future.",
         "cta_text": "Ready to take action?"
     },
