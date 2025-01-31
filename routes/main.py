@@ -4,6 +4,8 @@ from flask_login import login_required, current_user
 from config import CALCULATOR_CONFIG
 from config import LANDING_PAGE_CONFIG
 from calculations import calculate
+from flask import send_file
+import json
 
 main = Blueprint("main", __name__)
 
@@ -39,3 +41,19 @@ def imprint():
 @main.route("/privacy")
 def privacy():
     return render_template("privacy.html", config=LANDING_PAGE_CONFIG)
+
+@main.route("/download/pdf")
+def download_pdf():
+    data = request.args.get('data')
+    if data:
+        # For now, just return the JSON data
+        return data
+    return "No data provided", 400
+
+@main.route("/download/excel")
+def download_excel():
+    data = request.args.get('data')
+    if data:
+        # For now, just return the JSON data
+        return data
+    return "No data provided", 400
