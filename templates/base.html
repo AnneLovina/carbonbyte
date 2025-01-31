@@ -61,7 +61,7 @@
     </div>
 
     <!-- Main content -->
-    <main class="container mx-auto px-4 py-8">
+    <main>
         <!-- Flash messages -->
         {% with messages = get_flashed_messages(with_categories=true) %}
         {% if messages %}
@@ -72,14 +72,18 @@
         {% endfor %}
         {% endif %}
         {% endwith %}
-
         {% block content %}{% endblock %}
     </main>
 
-    <!-- Footer -->
-    <footer class="footer footer-center p-4 bg-base-300 text-base-content mt-auto">
-        <div>
-            <p>Copyright © 2025 - All rights reserved</p>
+    <!-- Simple Footer -->
+    <footer class="bg-gray-100 py-6 mt-auto">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+
+            <div class="text-center text-gray-600 text-sm">
+                <a href="{{ url_for('main.imprint') }}" class="hover:text-gray-900 mx-3">Imprint</a>
+                <a href="{{ url_for('main.privacy') }}" class="hover:text-gray-900 mx-3">Data Privacy</a>
+            </div>
+            <p class="text-center my-4 text-gray-600 text-sm">Copyright © 2025 - All rights reserved</p>
         </div>
     </footer>
 </body>
