@@ -229,7 +229,10 @@ CALCULATOR_CONFIG = {
 
 
 LEGAL_CONFIG =  {
-    "imprint": "Anne Dyck Mainzer\n\nMainzerStraße 5\n\n10247 Berlin\n\nMail.",
+    "imprint": "Anne Dyck
+    MainzerStraße 5
+    10247 Berlin
+    Mail.",
     "privacy": "Your company's privacy policy goes here.",
 }
 
