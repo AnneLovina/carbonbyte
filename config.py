@@ -260,8 +260,7 @@ LANDING_PAGE_CONFIG = {
     ],
     "value_chain": {
         "title": "Want to know more about the value chain of a digital product?",
-        "description": "The value chain consists of several stages where electricity is consumed. The largest energy consumers are typically data centers and network infrastructure, followed by end-user device consumption.Most companies focus on the emissions from data centers (which is required by the GHG protocol), however it can be interesting to have a look at the whole value chain.
-This calculation model focuses on the categories 3., 4., and 5. (marked in bold), therefore it does not show a whole Product carbon footprint (PCF). If you need to support to calculate the whole PCF please contact us.",
+        "description": "The value chain consists of several stages where electricity is consumed. The largest energy consumers are typically data centers and network infrastructure, followed by end-user device consumption.Most companies focus on the emissions from data centers (which is required by the GHG protocol), however it can be interesting to have a look at the whole value chain.This calculation model focuses on the categories 3., 4., and 5. (marked in bold), therefore it does not show a whole Product carbon footprint (PCF). If you need to support to calculate the whole PCF please contact us."
        "sections": [
             {
                 "title": "Development and Design",
