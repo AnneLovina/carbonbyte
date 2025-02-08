@@ -243,18 +243,18 @@ LANDING_PAGE_CONFIG = {
     },
     "features": [
         {
-            "title": "Content Delivery",
-            "description": "Analyze emissions from global network infrastructure and content delivery networks.",
+            "title": "Hosting & Data Processing",
+            "description": "Calculate the carbon footprint of your hosting environment and data centers,",
             "bg_class": "bg-[#F3E5D7]"
         },
         {
-            "title": "User Consumption",
-            "description": "Track emissions from various end-user devices and network connections.",
+            "title": "Content Delivery",
+            "description": "Analyze emissions from global network infrastructure and content delivery networks.",
             "bg_class": "bg-[#E7D8C9]"
         },
         {
-            "title": "Maintenance",
-            "description": "Measure the impact of updates, patches, and continuous integration.",
+            "title": "End-User Consumption",
+            "description": "Track emissions from various end-user devices and network connections.",
             "bg_class": "bg-[#D8C3A5]"
         }
     ],
