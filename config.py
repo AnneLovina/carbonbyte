@@ -259,19 +259,71 @@ LANDING_PAGE_CONFIG = {
         }
     ],
     "value_chain": {
-        "title": "Understanding the Digital Value Chain",
-        "description": "The value chain consists of several stages where electricity is consumed. The largest energy consumers are typically data centers and network infrastructure, followed by end-user device consumption.",
-        "sections": [
+        "title": "Want to know more about the value chain of a digital product?",
+        "description": "The value chain consists of several stages where electricity is consumed. The largest energy consumers are typically data centers and network infrastructure, followed by end-user device consumption.Most companies focus on the emissions from data centers (which is required by the GHG protocol), however it can be interesting to have a look at the whole value chain.
+This calculation model focuses on the categories 3., 4., and 5. (marked in bold), therefore it does not show a whole Product carbon footprint (PCF). If you need to support to calculate the whole PCF please contact us.",
+       "sections": [
             {
                 "title": "Development and Design",
-                "description": "Hardware, software tools, and office infrastructure energy consumption."
+                "description": "In this phase, the digital product is designed and programmed.",
+                "electricity_consumption": [
+                    "Hardware such as computers, laptops, and development servers.",
+                    "Software tools and development environments.",
+                    "Collaboration platforms (e.g., cloud services for project management).",
+                    "Office infrastructure (lighting, heating, and cooling)."
+                ]
             },
             {
-                "title": "Hosting and Processing",
-                "description": "Server hardware, cooling systems, and network devices energy usage."
+                "title": "Hosting and Data Processing",
+                "description": "Here, the digital product is hosted in a data center.",
+                "electricity_consumption": [
+                    "Server hardware for processing requests and storing data.",
+                    "Cooling systems (e.g., air conditioning or water cooling) for server rooms.",
+                    "Network devices like routers, switches, and load balancers.",
+                    "Backup power supplies (UPS, generators).",
+                    "Redundant server infrastructure for fail-safety."
+                ]
+            },
+            {
+                "title": "Content Delivery",
+                "description": "To deliver data and services quickly to the end user, Content Delivery Networks (CDNs) and decentralized servers are used.",
+                "electricity_consumption": [
+                    "Global network infrastructure for data transfer.",
+                    "CDN servers for caching content in various regions.",
+                    "Data compression and optimization, which require additional computing power."
+                ]
+            },
+            {
+                "title": "End-User Consumption",
+                "description": "End-users access the digital product via various devices.",
+                "electricity_consumption": [
+                    "Smartphones, tablets, laptops, and desktop PCs.",
+                    "Internet routers and modems for connecting to the internet.",
+                    "Mobile networks (4G, 5G) and Wi-Fi infrastructure.",
+                    "Display technologies (e.g., OLED, LCD) for viewing content."
+                ]
+            },
+            {
+                "title": "Maintenance and Updates",
+                "description": "Regular updates and improvements are necessary.",
+                "electricity_consumption": [
+                    "Server load for software updates and patches.",
+                    "Data transfer for updates to end-user devices.",
+                    "Development infrastructure for continuous integration and deployment (CI/CD)."
+                ]
+            },
+            {
+                "title": "Disposal and Recycling",
+                "description": "At the end of the product’s lifecycle, devices need to be disposed of or recycled.",
+                "electricity_consumption": [
+                    "Recycling processes for old hardware.",
+                    "Transport and processing of electronic waste.",
+                    "Energy consumption for recovering raw materials (e.g., metals)."
+                ]
             }
         ]
-    },
+    }
+},
     "faq": [
         {
             "question": "What does this tool do?",
