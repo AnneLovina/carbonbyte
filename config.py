@@ -264,13 +264,13 @@ LANDING_PAGE_CONFIG = {
         "sections": [
             {
                 "title": "Development and Design",
-                "description": "In this phase, the digital product is designed and programmed.",
-                "electricity_consumption": [
-                    "Hardware such as computers, laptops, and development servers.",
-                    "Software tools and development environments.",
-                    "Collaboration platforms (e.g., cloud services for project management).",
-                    "Office infrastructure (lighting, heating, and cooling)."
-                ]
+                "description": """In this phase, the digital product is designed and programmed.
+                electricity_consumption: [
+                    Hardware such as computers, laptops, and development servers.,
+                    Software tools and development environments.",
+                    Collaboration platforms (e.g., cloud services for project management).,
+                    Office infrastructure (lighting, heating, and cooling).
+                ]""",
             },
             {
                 "title": "Hosting and Data Processing",
