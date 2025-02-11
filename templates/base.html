@@ -37,6 +37,9 @@
                 </a>
             </div>
             <div class="flex-none gap-2">
+                {% if request.endpoint == 'main.index' %}
+                <a href="#faq" class="btn btn-ghost mr-2">FAQ</a>
+                {% endif %}
                 {% if current_user.is_authenticated %}
                 <div class="dropdown dropdown-end">
                     <label tabindex="0" class="btn btn-ghost">
