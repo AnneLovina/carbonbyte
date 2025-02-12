@@ -8,8 +8,8 @@
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
         <div class="grid md:grid-cols-2 gap-8 items-center">
             <div class="text-left">
-                <h1 class="text-4xl md:text-5xl font-bold mb-4 text-red-950">{{ config.hero.title }}</h1>
-                <p class="text-xl mb-6 max-w-xl text-neutral-900">{{ config.hero.description }}</p>
+                <h1 class="text-4xl md:text-5xl font-bold mb-4 text-yellow-950">{{ config.hero.title }}</h1>
+                <p class="text-xl mb-6 max-w-xl text-yellow-950">{{ config.hero.description }}</p>
                 <a href="{{ url_for('auth.login') }}"
                     class="inline-flex items-center px-8 py-4 text-lg font-medium text-white bg-[#000fff] hover:bg-[#DB4A2B] transform transition-all duration-300 shadow-lg hover:shadow-xl">
                     Try the Calculator
@@ -52,12 +52,12 @@
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <h2 class="text-3xl font-bold mb-8 text-center text-red-950">{{ config.value_chain.title }}</h2>
         <div class="prose lg:prose-xl mx-auto">
-            <p class="mb-6 text-red-950">{{ config.value_chain.description }}</p>
+            <p class="mb-6 text-yellow-950">{{ config.value_chain.description }}</p>
             <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mt-8">
                 {% for section in config.value_chain.sections %}
                 <div class="bg-white p-6 shadow-sm hover:shadow-md transition-shadow duration-300">
-                    <h3 class="text-xl font-semibold text-blue-700 mb-3">{{ section.title }}</h3>
-                    <p class="text-gray-600">{{ section.description }}</p>
+                    <h3 class="text-xl font-semibold text-red-950 mb-3">{{ section.title }}</h3>
+                    <p class="text-yellow-950">{{ section.description }}</p>
                 </div>
                 {% endfor %}
             </div>
