@@ -6,7 +6,14 @@ def calculate(inputs):
     # Create a copy of inputs to avoid modifying the original
     inputs = {**inputs}
 
-    # Convert numeric inputs to float
+    # Check for required basic fields
+    required_fields = ["product_name", "product_type", "country", "start_date", "end_date"]
+    missing_fields = [field for field in required_fields if field not in inputs or not inputs[field]]
+    if missing_fields:
+        error_msg = f"Missing required fields: {', '.join(missing_fields)}"
+        return {"error": error_msg}
+
+    # Define numeric fields and provide default values for missing fields
     numeric_fields = [
         "data_center_co2_emissions", "ad_impressions", "ad_emission_factor",
         "product_size", "time_on_product", "video_viewing_time",
@@ -15,8 +22,24 @@ def calculate(inputs):
         "tv_impressions", "ereader_impressions"
     ]
     
+    # Set defaults for missing numeric fields
     for field in numeric_fields:
-        inputs[field] = float(inputs[field])
+        if field not in inputs or inputs[field] == '':
+            inputs[field] = "0"
+    
+    # Convert numeric inputs to float with error handling
+    numeric_errors = []
+    for field in numeric_fields:
+        try:
+            inputs[field] = float(inputs[field])
+            # Check for negative values where it doesn't make sense
+            if inputs[field] < 0:
+                numeric_errors.append(f"{field} cannot be negative")
+        except ValueError:
+            numeric_errors.append(f"{field} must be a valid number")
+    
+    if numeric_errors:
+        return {"error": "Invalid numeric data: " + ", ".join(numeric_errors)}
 
     # Initialize result with basic information
     result = {
@@ -27,17 +50,29 @@ def calculate(inputs):
         "end_date": inputs["end_date"]
     }
 
+    # Get emission factor for the selected country with error handling
     emission_factor = P.COUNTRY_CARBON_INTENSITY.get(inputs["country"].upper())
+    if emission_factor is None:
+        # Use default emission factor if the country isn't found
+        emission_factor = P.COUNTRY_CARBON_INTENSITY_DEFAULT
+        result["warnings"] = [f"Country '{inputs['country']}' not recognized, using default emission factor"]
+    else:
+        result["warnings"] = []
 
     # Data Center
     result["result_data_center"] = inputs["data_center_co2_emissions"]
 
-    if inputs["ad_emission_factor"] is not None or inputs["ad_emission_factor"] <= 0:
-        result["result_advertising"] = (
-            inputs["ad_impressions"] * inputs["ad_emission_factor"] / 1000000
-        )
+    # Check if we have valid ad impression data
+    if inputs["ad_impressions"] > 0:
+        if inputs["ad_emission_factor"] > 0:
+            result["result_advertising"] = (
+                inputs["ad_impressions"] * inputs["ad_emission_factor"] / 1000000
+            )
+        else:
+            result["result_advertising"] = inputs["ad_impressions"] * P.AD_EMISSION_FACTOR
+            result["warnings"].append("Using default ad emission factor")
     else:
-        result["result_advertising"] = inputs["ad_impressions"] * P.AD_EMISSION_FACTOR
+        result["result_advertising"] = 0
 
     # Impressions
     laptop_impressions = inputs["computer_impressions"] * P.LAPTOP_SHARE
@@ -50,7 +85,13 @@ def calculate(inputs):
         + inputs["tv_impressions"]
         + inputs["ereader_impressions"]
     )
-    avg_time_on_product = inputs["time_on_product"] / total_impressions
+    
+    # Prevent division by zero
+    if total_impressions <= 0:
+        result["warnings"].append("No device impressions provided, assuming zero usage")
+        avg_time_on_product = 0
+    else:
+        avg_time_on_product = inputs["time_on_product"] / total_impressions
 
     result["end_user_devices"] = {
         "laptop_energy": avg_time_on_product
@@ -197,14 +238,34 @@ def calculate(inputs):
     )
     result["cpn_emissions"] = result["cpn_energy"] * emission_factor
 
-    reporting_period_days = (
-        datetime.strptime(inputs["end_date"], "%Y-%m-%d")
-        - datetime.strptime(inputs["start_date"], "%Y-%m-%d")
-    ).days
+    # Calculate reporting period with error handling
+    try:
+        reporting_period_days = (
+            datetime.strptime(inputs["end_date"], "%Y-%m-%d")
+            - datetime.strptime(inputs["start_date"], "%Y-%m-%d")
+        ).days
+        
+        # Check if reporting period makes sense
+        if reporting_period_days < 0:
+            result["warnings"].append("End date is before start date. Please check your dates.")
+        elif reporting_period_days == 0:
+            result["warnings"].append("Start and end date are the same. Consider using a longer period.")
 
-    # emission_factor = P.COUNTRY_CARBON_INTENSITY.get(
-    #     inputs["country"], P.COUNTRY_CARBON_INTENSITY_DEFAULT
-    # )
+    except ValueError:
+        # If date parsing fails, add a warning
+        result["warnings"].append("Invalid date format. Dates should be in YYYY-MM-DD format.")
+        reporting_period_days = 0
+
+    # Add total calculation if no errors encountered
+    if "error" not in result:
+        # Calculate total emissions across all categories
+        total_emissions = (
+            result["result_data_center"] +
+            result["result_advertising"] +
+            result["content_delivery_emissions"]["fixed_line"] +
+            result["content_delivery_emissions"]["mobile_line"]
+        )
+        result["total_emissions"] = total_emissions
 
     return result
 

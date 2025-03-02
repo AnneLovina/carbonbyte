@@ -8,6 +8,15 @@
         <div class="card-body">
             <h2 class="card-title text-2xl mb-6">CarbonByte Calculator</h2>
 
+            {% if error %}
+            <div class="alert alert-error shadow-lg mb-6">
+                <div>
+                    <svg xmlns="http://www.w3.org/2000/svg" class="stroke-current flex-shrink-0 h-6 w-6" fill="none" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+                    <span>{{ error }}</span>
+                </div>
+            </div>
+            {% endif %}
+
             <div class="tabs tabs-boxed mb-6">
                 {% for section_id, section in config.sections.items() %}
                 <a class="tab {% if loop.first %}tab-active{% endif %}" data-tab="{{ section_id }}">{{ section.title
@@ -43,7 +52,7 @@
                                                     {% endif %}
                                                 </span>
                                             </label>
-                                            <input type="{{ field.type }}" name="{{ field_id }}" class="input input-bordered w-full" />
+                                            <input type="{{ field.type }}" name="{{ field_id }}" value="{{ form_data[field_id] if form_data and field_id in form_data else '' }}" class="input input-bordered w-full" />
                                         </div>
                                     {% endfor %}
                                 </div>
@@ -64,13 +73,13 @@
                                 {% if field.type == 'select' %}
                                     <select class="select select-bordered w-full" name="{{ field_id }}">
                                         {% for option_id, option in field.options.items() %}
-                                            <option value="{{ option_id }}">{{ option.label }}</option>
+                                            <option value="{{ option_id }}" {% if form_data and field_id in form_data and form_data[field_id] == option_id %}selected{% endif %}>{{ option.label }}</option>
                                         {% endfor %}
                                     </select>
                                 {% elif field.type == 'url' %}
-                                    <input type="text" name="{{ field_id }}" class="input input-bordered w-full" />
+                                    <input type="text" name="{{ field_id }}" value="{{ form_data[field_id] if form_data and field_id in form_data else '' }}" class="input input-bordered w-full" />
                                 {% else %}
-                                    <input type="{{ field.type }}" name="{{ field_id }}" class="input input-bordered w-full" />
+                                    <input type="{{ field.type }}" name="{{ field_id }}" value="{{ form_data[field_id] if form_data and field_id in form_data else '' }}" class="input input-bordered w-full" />
                                 {% endif %}
                             </div>
                         {% endfor %}

@@ -51,6 +51,16 @@ def calc():
     if request.method == "POST":
         results = calculate(request.form)
         
+        # Check if calculation had errors
+        if "error" in results:
+            # Return to calculator with error message
+            return render_template(
+                "calculator.html", 
+                config=CALCULATOR_CONFIG, 
+                error=results["error"],
+                form_data=request.form
+            )
+        
         # Create new calculation record
         calculation = Calculation(
             data=results,
@@ -63,6 +73,7 @@ def calc():
         
         raw_string = json.dumps(results, indent=4)
         return render_template("results.html", raw=raw_string, **results)
+        
     return render_template("calculator.html", config=CALCULATOR_CONFIG)
 
 
