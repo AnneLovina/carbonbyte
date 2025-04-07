@@ -1,5 +1,7 @@
 # CarbonByte: Digital Product Carbon Footprint Calculator
 
+![CarbonByte Screenshot](screenshot.png)
+
 ## 1. What is CarbonByte?
 
 CarbonByte is a web application designed to help users estimate the carbon footprint of their digital products, such as websites, apps, podcasts, newsletters, or e-papers. Users can input various metrics related to their product's lifecycle, including data center usage, advertising, and end-user interaction. The application then calculates the estimated CO2 emissions associated with these activities over a specified period.
