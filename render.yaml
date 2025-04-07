@@ -1,23 +1,19 @@
-# render.yaml
 services:
   - type: web
     name: carbonbyte
     runtime: python
     repo: https://github.com/AnneLovina/carbonbyte
-    branch: main # Or your default branch name (e.g., master)
+    branch: main
     envVars:
       - key: PYTHON_VERSION
-        value: 3.11 # Specify your desired Python version
+        value: 3.11
       - key: SECRET_KEY
         generateValue: true # Generates a secure secret key automatically
-      # - key: DATABASE_URL # Uncomment and potentially adjust app.py if using a managed DB like Render Postgres
-      #   fromDatabase:
-      #     name: your-db-name # Replace with your Render Database name
-      #     property: connectionString
+ 
     buildCommand: |
       pip install --upgrade pip
       pip install gunicorn # Add gunicorn for production
-      pip install -r requirements.txt # Install dependencies [cite: 1]
-    startCommand: gunicorn app:app # Command to start the server [cite: 2]
-    plan: free # Optional: specify your Render plan (e.g., free, standard)
-    autoDeploy: true # Enable auto-deployment on pushes to the specified branch
+      pip install -r requirements.txt
+    startCommand: gunicorn app:app 
+    plan: free 
+    autoDeploy: true 
