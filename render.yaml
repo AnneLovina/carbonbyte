@@ -12,8 +12,7 @@ services:
  
     buildCommand: |
       pip install --upgrade pip
-      pip install gunicorn # Add gunicorn for production
       pip install -r requirements.txt
-    startCommand: gunicorn app:app 
+    startCommand: python app.py
     plan: free 
     autoDeploy: true 
