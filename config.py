@@ -236,9 +236,8 @@ LEGAL_CONFIG =  {
 
 LANDING_PAGE_CONFIG = {
     "hero": {
-        "title": "Measure Your Digital Carbon Footprint",
-        "description": "Hey there! When we talk about emissions, we often think of energy use and physical products - but what about the digital world? Websites, apps and podcasts also have a carbon footprint and their impact is becoming more important to address. CarbonByte helps you understand the environmental footprint of your digital products so you can make informed choices. Let's take a closer look!",
-        "sub_description": "With our calculator, you can analyze emissions across key phases like content delivery, user consumption, and maintenance, empowering you to make data-driven decisions for a more sustainable future.",
+        "title": "Track Your Digital Carbon Footprint",
+        "description": "Did you know that every digital product, from websites to mobile apps, contributes to your business's carbon footprint? The energy used by your infrastructure, the data transferred, and the devices accessing your digital products all result in emissions. With our calculator, businesses can measure the carbon impact of their digital products, understand where emissions are generated, and take meaningful steps towards reducing their environmental footprint.",
         "cta_text": "Ready to take action?"
     },
     "features": [
