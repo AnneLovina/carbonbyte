@@ -228,14 +228,13 @@ CALCULATOR_CONFIG = {
 
 
 
-LEGAL_CONFIG =  {
-    LEGAL_CONFIG = {
+LEGAL_CONFIG = {
     "imprint": """Anne Dyck
-xxxxxxxx xxxx
-xxxxxxx Berlin
+Straße x
+102xx Berlin
 Germany
 
-Email: xxx@xxx.xxx
+Email: kontakt@xxxxx.de
 
 Liability for Content:
 As a service provider, we are responsible for our own content on these pages in accordance with general legislation, pursuant to § 7 (1) TMG. However, under §§ 8 to 10 TMG, we are not obliged to monitor transmitted or stored third-party information or to investigate circumstances indicating illegal activity. Obligations to remove or block the use of information in accordance with general laws remain unaffected. Liability in this regard is only possible from the point in time at which a specific legal infringement becomes known. Upon notification of such violations, we will remove this content immediately.
@@ -246,8 +245,32 @@ Our website contains links to external third-party websites over which we have n
 Copyright:
 The content and works created by the site operators on these pages are subject to German copyright law. Duplication, processing, distribution, or any form of commercialization beyond the scope of copyright law shall require the prior written consent of the respective author or creator. Downloads and copies of this site are only permitted for private, non-commercial use. Insofar as the content on this site was not created by the operator, the copyrights of third parties are respected. In particular, third-party content is identified as such. Should you nevertheless become aware of a copyright infringement, please inform us accordingly. Upon becoming aware of any violations, we will remove such content immediately.
 """,
-    "privacy": "Your company's privacy policy goes here.",
+    "privacy": """Privacy Policy
+
+We take the protection of your personal data very seriously. We treat your personal data confidentially and in accordance with statutory data protection regulations and this privacy policy.
+
+Data Collection:
+We only collect personal data if it is necessary for providing our services. This may include information such as your name, email address, or IP address.
+
+Usage of Data:
+Collected data is used exclusively to provide, improve, and secure our services. Your data will not be passed on to third parties without your explicit consent, unless legally required.
+
+Cookies:
+Our website may use cookies to improve the user experience. You can configure your browser to notify you when cookies are being set or to block cookies entirely.
+
+Your Rights:
+You have the right to request information about the personal data we store about you, to have incorrect data corrected, and to request deletion or restricted processing of your data. You also have the right to object to the processing of your data and to data portability.
+
+Contact:
+For questions regarding this privacy policy or your personal data, you can contact us at:
+
+Email: kontakt@xxx.de
+
+Changes:
+We reserve the right to modify this privacy policy at any time in accordance with legal requirements.
+"""
 }
+
 
 LANDING_PAGE_CONFIG = {
     "hero": {
