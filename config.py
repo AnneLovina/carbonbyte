@@ -231,33 +231,42 @@ CALCULATOR_CONFIG = {
 LEGAL_CONFIG = {
     "imprint": """
         <h2>Imprint</h2>
-        <p><strong>Kai Torben Dyck</strong><br>
-        Voßstraße 21<br>
-        30161 Hannover<br>
+        <p><strong>Anne Dyck</strong><br>
+        Straße x<br>
+        102xx Berlin<br>
         Germany</p>
-        <p><strong>Phone:</strong> +49 176 55137392<br>
-        <strong>Email:</strong> kontakt@brotplaner.de</p>
+        
+        <strong>Email:</strong> kontakt@xxx.de</p>
+        
         <h3>Liability for Content</h3>
         <p>As a service provider, we are responsible for our own content on these pages in accordance with general legislation, pursuant to § 7 (1) TMG. However, under §§ 8 to 10 TMG, we are not obliged to monitor transmitted or stored third-party information or to investigate circumstances indicating illegal activity. Obligations to remove or block the use of information in accordance with general laws remain unaffected. Liability in this regard is only possible from the point in time at which a specific legal infringement becomes known. Upon notification of such violations, we will remove this content immediately.</p>
+        
         <h3>Liability for Links</h3>
         <p>Our website contains links to external third-party websites over which we have no control. Therefore, we cannot assume any liability for these external contents. The respective provider or operator of the linked pages is always responsible for their content. The linked pages were checked for possible legal violations at the time of linking. No unlawful content was identifiable at that time. A permanent content check of the linked pages is, however, not reasonable without concrete evidence of a legal violation. Upon becoming aware of any such infringements, we will remove the respective links immediately.</p>
+        
         <h3>Copyright</h3>
         <p>The content and works created by the site operators on these pages are subject to German copyright law. Duplication, processing, distribution, or any form of commercialization beyond the scope of copyright law shall require the prior written consent of the respective author or creator. Downloads and copies of this site are only permitted for private, non-commercial use. Insofar as the content on this site was not created by the operator, the copyrights of third parties are respected. In particular, third-party content is identified as such. Should you nevertheless become aware of a copyright infringement, please inform us accordingly. Upon becoming aware of any violations, we will remove such content immediately.</p>
     """,
     "privacy": """
         <h2>Privacy Policy</h2>
         <p>We take the protection of your personal data very seriously. We treat your personal data confidentially and in accordance with statutory data protection regulations and this privacy policy.</p>
+        
         <h3>Data Collection</h3>
         <p>We only collect personal data if it is necessary for providing our services. This may include information such as your name, email address, or IP address.</p>
+        
         <h3>Usage of Data</h3>
         <p>Collected data is used exclusively to provide, improve, and secure our services. Your data will not be passed on to third parties without your explicit consent, unless legally required.</p>
+        
         <h3>Cookies</h3>
         <p>Our website may use cookies to improve the user experience. You can configure your browser to notify you when cookies are being set or to block cookies entirely.</p>
+        
         <h3>Your Rights</h3>
         <p>You have the right to request information about the personal data we store about you, to have incorrect data corrected, and to request deletion or restricted processing of your data. You also have the right to object to the processing of your data and to data portability.</p>
+        
         <h3>Contact</h3>
         <p>For questions regarding this privacy policy or your personal data, you can contact us at:<br>
-        Email: kontakt@brotplaner.de</p>
+        Email: kontakt@xxx.de</p>
+        
         <h3>Changes</h3>
         <p>We reserve the right to modify this privacy policy at any time in accordance with legal requirements.</p>
     """
