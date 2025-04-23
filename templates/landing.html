@@ -49,36 +49,33 @@
 
 <!-- Value Chain Section -->
 <!-- FAQ Section -->
-<div class="py-16" style="background-color: #ffffff;" id="faq">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <h2 class="text-3xl font-bold mb-8 text-center text-black">Frequently Asked Questions</h2>
-        <div class="space-y-4 max-w-4xl mx-auto">
-            {% for item in config.faq %}
-            <div class="border border-[#0000CC] bg-white hover:border-[#573636] transition-colors duration-300">
-                <button class="w-full text-left px-6 py-4 focus:outline-none" onclick="toggleFAQ(this)">
-                    <div class="flex justify-between items-center">
-                        <span class="font-medium text-black">{{ item.question }}</span>
-                        <svg class="w-5 h-5 transform transition-transform duration-200" fill="none"
-                            stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7">
-                            </path>
-                        </svg>
-                    </div>
-                </button>
-                <div class="hidden px-6 pb-4">
-                    <p class="text-gray-600">{{ item.answer }}</p>
-                    {% if item.list %}
-                    <ul class="list-disc ml-6 mt-2 text-gray-600">
-                        {% for item in item.list %}
-                        <li>{{ item }}</li>
-                        {% endfor %}
-                    </ul>
-                    {% endif %}
-                </div>
-            </div>
-            {% endfor %}
+<div class="bg-white py-16">
+  <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+    <h2 class="text-3xl font-bold text-center mb-12">Frequently Asked Questions</h2>
+
+    {% for section in config.faq %}
+      <div class="mb-8">
+        <h3 class="text-2xl font-semibold text-gray-800 mb-4">{{ section.category }}</h3>
+        <div class="space-y-4">
+          {% for item in section.questions %}
+            <details class="border border-gray-200 rounded-md p-4 bg-gray-50">
+              <summary class="font-medium text-lg cursor-pointer">{{ item.question }}</summary>
+              <div class="mt-2 text-gray-700">
+                <p>{{ item.answer }}</p>
+                {% if item.list %}
+                  <ul class="list-disc list-inside mt-2 text-gray-600">
+                    {% for bullet in item.list %}
+                      <li>{{ bullet }}</li>
+                    {% endfor %}
+                  </ul>
+                {% endif %}
+              </div>
+            </details>
+          {% endfor %}
         </div>
-    </div>
+      </div>
+    {% endfor %}
+  </div>
 </div>
 
 <!-- Scripts -->
