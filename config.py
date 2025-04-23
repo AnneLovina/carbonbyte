@@ -290,25 +290,25 @@ LANDING_PAGE_CONFIG = {
         "title": "Data Centers",
         "description": "Carbon footprint from hosting, includes servers, cloud infrastructure, and storage. ",
         "status": "included",
-        "bg_color": "#E1E8F0"
+        "bg_color": "#db4a2b"
     },
     {
         "title": "Advertising",
         "description": "Emissions from programmatic advertising. ",
         "status": "included",
-        "bg_color": "#E1E8F0"
+        "bg_color": "#aed6e5"
     },
     {
         "title": "Content Delivery",
         "description": "Emissions from CDNs and global network infrastructure.",
         "status": "included",
-        "bg_color": "#D4E1F4"
+        "bg_color": "#ffe082"
     },
     {
         "title": "End User",
         "description": "Energy usage of end-user devices and access networks.",
         "status": "included",
-        "bg_color": "#C5DFF8"
+        "bg_color": "#573636"
     },
     {
         "title": "Disposal",
