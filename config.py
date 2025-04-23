@@ -280,22 +280,37 @@ LANDING_PAGE_CONFIG = {
         "cta_text": "Ready to take action?"
     },
     "features": [
-        {
-            "title": "Hosting & Data Processing",
-            "description": "Calculate the carbon footprint of your hosting environment and data centers,",
-            "bg_class": "bg-[#F3E5D7]"
-        },
-        {
-            "title": "Content Delivery",
-            "description": "Analyze emissions from global network infrastructure and content delivery networks.",
-            "bg_class": "bg-[#E7D8C9]"
-        },
-        {
-            "title": "End-User Consumption",
-            "description": "Track emissions from various end-user devices and network connections.",
-            "bg_class": "bg-[#D8C3A5]"
-        }
-    ],
+    {
+        "title": "Development & Design",
+        "description": "Upstream emissions from design processes and software development.",
+        "status": "not_included",
+        "bg_color": "#F5F5F5"
+    },
+    {
+        "title": "Hosting",
+        "description": "Carbon footprint of servers, cloud infrastructure, and storage.",
+        "status": "included",
+        "bg_color": "#E1E8F0"
+    },
+    {
+        "title": "Content Delivery",
+        "description": "Emissions from CDNs and global network infrastructure.",
+        "status": "included",
+        "bg_color": "#D4E1F4"
+    },
+    {
+        "title": "End User",
+        "description": "Energy usage of end-user devices and access networks.",
+        "status": "included",
+        "bg_color": "#C5DFF8"
+    },
+    {
+        "title": "Disposal",
+        "description": "Downstream impacts from electronic waste and recycling.",
+        "status": "not_included",
+        "bg_color": "#F5F5F5"
+    }
+],
     "value_chain": {
         "title": "Want to know more about the value chain of a digital product?",
         "description": """The value chain consists of several stages where electricity is consumed. The largest energy consumers are typically data centers and network infrastructure, followed by end-user device consumption.Most companies focus on the emissions from data centers (which is required by the GHG protocol), however it can be interesting to have a look at the whole value chain.This calculation model focuses on the categories 3., 4., and 5. (marked in bold), therefore it does not show a whole Product carbon footprint (PCF). If you need to support to calculate the whole PCF please contact us.""",
