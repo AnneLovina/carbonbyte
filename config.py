@@ -400,7 +400,7 @@ LANDING_PAGE_CONFIG = {
             },
             {
                 "question": "Where can I learn more about the tool's methodology?",
-                "answer": "We prioritize transparency. All formulas, calculations, and data sources are documented in our open source methodology <a href="https://github.com/AnneLovina/carbonbyte" target="_blank" class="underline text-blue-600 hover:text-blue-800">on GitHub</a>."
+                "answer": "We prioritize transparency. All formulas, calculations, and data sources are documented in our open source methodology: https://github.com/AnneLovina/carbonbyte."
             }
         ]
     },
