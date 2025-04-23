@@ -281,14 +281,20 @@ LANDING_PAGE_CONFIG = {
     },
     "features": [
     {
-        "title": "Development & Design",
+        "title": "Development",
         "description": "Upstream emissions from design processes and software development.",
         "status": "not_included",
         "bg_color": "#F5F5F5"
     },
     {
-        "title": "Hosting",
-        "description": "Carbon footprint of servers, cloud infrastructure, and storage.",
+        "title": "Data Centers",
+        "description": "Carbon footprint from hosting, includes servers, cloud infrastructure, and storage. ",
+        "status": "included",
+        "bg_color": "#E1E8F0"
+    },
+    {
+        "title": "Advertising",
+        "description": "Emissions from programmatic advertising. ",
         "status": "included",
         "bg_color": "#E1E8F0"
     },
