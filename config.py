@@ -236,7 +236,7 @@ LEGAL_CONFIG = {
         102xx Berlin<br>
         Germany</p>
         
-        <strong>Email:</strong> kontakt@xxx.de</p>
+        <strong>Email:</strong> contact@carbonbyte.org</p>
         
         <h3>Liability for Content</h3>
         <p>As a service provider, we are responsible for our own content on these pages in accordance with general legislation, pursuant to § 7 (1) TMG. However, under §§ 8 to 10 TMG, we are not obliged to monitor transmitted or stored third-party information or to investigate circumstances indicating illegal activity. Obligations to remove or block the use of information in accordance with general laws remain unaffected. Liability in this regard is only possible from the point in time at which a specific legal infringement becomes known. Upon notification of such violations, we will remove this content immediately.</p>
@@ -265,7 +265,7 @@ LEGAL_CONFIG = {
         
         <h3>Contact</h3>
         <p>For questions regarding this privacy policy or your personal data, you can contact us at:<br>
-        Email: kontakt@xxx.de</p>
+        Email: contact@carbonbyte.org</p>
         
         <h3>Changes</h3>
         <p>We reserve the right to modify this privacy policy at any time in accordance with legal requirements.</p>
