@@ -15,14 +15,12 @@ CALCULATOR_CONFIG = {
         "introduction": {
             "title": "Introduction",
             "text": """
-          <h1 class="text-3xl font-bold text-gray-800 mb-4">Energy Consumption across the Digital Value Chain</h1>
 
           <p class="text-gray-700 mb-4">
-              The largest energy consumers are typically data centers and network infrastructure, followed by end-user device consumption. Our calculation model focuses on these three; therefore, categories 1, 5, and 6 are not included.
-          </p>
+              CarbonByte is a web application designed to help users estimate the carbon footprint of their digital products, such as websites, apps, podcasts, newsletters, or e-papers. Users can input various metrics related to their product's lifecycle, including data center usage, advertising, and end-user interaction. The model estimates CO2 emissions by focusing on the primary energy consumers in the digital value chain:
 
           <div class="text-gray-700">
-              <p><strong>Development and Design:</strong> Electricity consumption in offices and development environments.</p>
+              <p><strong>1. Data Center Emissions:</strong> Electricity use in data centers (servers, cooling, networks).</p>
               <p><strong>Hosting and Data Processing:</strong> High electricity use in data centers (servers, cooling, networks).</p>
               <p><strong>Content Delivery:</strong> Energy for global networks and CDN infrastructure.</p>
               <p><strong>End-User Consumption:</strong> Power used by end-user devices and networking technology.</p>
