@@ -281,40 +281,40 @@ LANDING_PAGE_CONFIG = {
     },
     "features": [
     {
-        "title": "Development",
-        "description": "Upstream emissions from design processes and software development.",
+        "title": "Design & Development",
+        "description": "Upstream emissions from software development and design.",
         "status": "not_included",
-        "bg_color": "#F5F5F5"
+        "bg_color": "#f5f5f5"
     },
     {
-        "title": "Data Centers",
-        "description": "Carbon footprint from hosting, includes servers, cloud infrastructure, and storage. ",
+        "title": "Data Center",
+        "description": "Server infrastructure and cloud operations.",
         "status": "included",
-        "bg_color": "#F5F5F5"
+        "bg_color": "#fff4f2"
     },
     {
         "title": "Advertising",
-        "description": "Emissions from programmatic advertising. ",
+        "description": "Emissions from ad loading and targeting.",
         "status": "included",
-        "bg_color": "#F5F5F5"
+        "bg_color": "#f1fafa"
     },
     {
         "title": "Content Delivery",
-        "description": "Emissions from CDNs and global network infrastructure.",
+        "description": "Streaming and CDN infrastructure.",
         "status": "included",
-        "bg_color": "#F5F5F5"
+        "bg_color": "#fffde7"
     },
     {
         "title": "End User",
-        "description": "Energy usage of end-user devices and access networks.",
+        "description": "Energy usage of end-user devices.",
         "status": "included",
-        "bg_color": "#F5F5F5"
+        "bg_color": "#f5f3f2"
     },
     {
         "title": "Disposal",
-        "description": "Downstream impacts from electronic waste and recycling.",
+        "description": "End-of-life and e-waste emissions.",
         "status": "not_included",
-        "bg_color": "#F5F5F5"
+        "bg_color": "#f5f5f5"
     }
 ],
     "value_chain": {
