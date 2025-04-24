@@ -21,14 +21,17 @@ CALCULATOR_CONFIG = {
 
           <div class="text-gray-700">
               <p><strong>1. Data Center Emissions:</strong> Electricity use in data centers (servers, cooling, networks).</p>
-              <p><strong>Hosting and Data Processing:</strong> High electricity use in data centers (servers, cooling, networks).</p>
-              <p><strong>Content Delivery:</strong> Energy for global networks and CDN infrastructure.</p>
-              <p><strong>End-User Consumption:</strong> Power used by end-user devices and networking technology.</p>
-              <p><strong>Maintenance and Updates:</strong> Electricity for updates and continuous integration.</p>
-              <p><strong>Disposal:</strong> Energy for recycling and waste management.</p>
+              <p><strong>2. Advertising Emissions:</strong> Calculated using the number of ad impressions and an emission factor (either user-provided or a default value from here: https://github.com/AnneLovina/carbonbyte/blob/main/parameters.py)</p>
+              <p><strong>3. Content Delivery (Network) Emissions:</strong> Estimated based on the total data transferred (calculated from product size, video viewing time, and downloads) across fixed and mobile networks. It uses energy intensity factors (kWh/GB) for each network type and applies a country-specific carbon intensity factor (kg CO2e/kWh) for electricity.</p>
+              <p><strong>4. End-User Device Emissions:</strong> Calculated based on the time users spend on the product, distributed across different device types (laptops, desktops, smartphones, tablets, TVs, e-readers) according to impression counts. It considers the average power consumption of each device type and the carbon intensity of electricity in the specified country.</p>
           </div>
 
-          <p class="text-gray-700 mt-4">In addition, no hardware emissions are included in the model.</p>
+          <p class="text-gray-700 mt-4">It does not currently include emissions related to:
+Development and Design phases.
+Maintenance and Updates (e.g., CI/CD pipelines).
+Hardware manufacturing (embodied carbon).
+Product disposal and recycling.
+Constants and Emission Factors: Default values for energy intensity, device power consumption, data transfer bitrates, and country carbon intensity are defined here: https://github.com/AnneLovina/carbonbyte/blob/main/parameters.py</p>
           """,
             "fields": {},
         },
