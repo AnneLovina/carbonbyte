@@ -17,21 +17,17 @@ CALCULATOR_CONFIG = {
             "text": """
 
           <p class="text-gray-700 mb-4">
-              CarbonByte is a web application designed to help users estimate the carbon footprint of their digital products, such as websites, apps, podcasts, newsletters, or e-papers. Users can input various metrics related to their product's lifecycle, including data center usage, advertising, and end-user interaction. The model estimates CO2 emissions by focusing on the primary energy consumers in the digital value chain:
+              CarbonByte estimates CO2 emissions of digital products, such as websites, apps, podcasts, newsletters, or e-papers by focusing on the primary energy consumers in the digital value chain. To begin your calculation journey with CarbonByte, follow these simple steps:
 
           <div class="text-gray-700">
-              <p><strong>1. Data Center Emissions:</strong> Electricity use in data centers (servers, cooling, networks).</p>
-              <p><strong>2. Advertising Emissions:</strong> Calculated using the number of ad impressions and an emission factor (either user-provided or a default value from here: https://github.com/AnneLovina/carbonbyte/blob/main/parameters.py)</p>
-              <p><strong>3. Content Delivery (Network) Emissions:</strong> Estimated based on the total data transferred (calculated from product size, video viewing time, and downloads) across fixed and mobile networks. It uses energy intensity factors (kWh/GB) for each network type and applies a country-specific carbon intensity factor (kg CO2e/kWh) for electricity.</p>
-              <p><strong>4. End-User Device Emissions:</strong> Calculated based on the time users spend on the product, distributed across different device types (laptops, desktops, smartphones, tablets, TVs, e-readers) according to impression counts. It considers the average power consumption of each device type and the carbon intensity of electricity in the specified country.</p>
+              <p><strong>1. Click on “Product Overview" </strong> in the top navigation to enter basic information about the digital product you want to assess.</p>
+              <p><strong>2. Go through each section step by step </strong> – starting with *Data Center*, then *Advertising*, *Content Delivery*, and *End User*.</p>
+              <p><strong>3. Input your own data </strong> and use the *i* button for tips provided within each section.</p>
+              <p><strong>4. Once you’ve completed all sections, </strong> head to **Review & Submit** to generate your final footprint summary.</p>
+              <p><strong>5. Not sure about something? </strong> Check out the **FAQ section** at the bottom of the landing page or go to *https://github.com/AnneLovina/carbonbyte/blob/main/parameters* for methodology details, emission factors, and limitations.
           </div>
 
-          <p class="text-gray-700 mt-4">It does not currently include emissions related to:
-Development and Design phases.
-Maintenance and Updates (e.g., CI/CD pipelines).
-Hardware manufacturing (embodied carbon).
-Product disposal and recycling.
-Constants and Emission Factors: Default values for energy intensity, device power consumption, data transfer bitrates, and country carbon intensity are defined here: https://github.com/AnneLovina/carbonbyte/blob/main/parameters.py</p>
+          <p class="text-gray-700 mt-4">Futher questions? Contact contact@carbonbyte.org</p>
           """,
             "fields": {},
         },
