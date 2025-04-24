@@ -389,11 +389,10 @@ LANDING_PAGE_CONFIG = {
                     "1. Data Center Emissions: Electricity use in data centers (servers, cooling, networks).",
                     "2. Advertising Emissions: Calculated using the number of ad impressions and an emission factor (either user-provided or a default value from here: https://github.com/AnneLovina/carbonbyte/blob/main/parameters.py)",
                     "3. Content Delivery (Network) Emissions: Estimated based on the total data transferred (calculated from product size, video viewing time, and downloads) across fixed and mobile networks. It uses energy intensity factors (kWh/GB) for each network type and applies a country-specific carbon intensity factor (kg CO2e/kWh) for electricity.",
-                    "4. End-User Device Emissions: Calculated based on the time users spend on the product, distributed across different device types (laptops, desktops, smartphones, tablets, TVs, e-readers) according to impression counts. It considers the average power consumption of each device type and the carbon intensity of electricity in the specified country.",
-                    "It does not currently include emissions related to: Development and Design phases, Maintenance and Updates (e.g., CI/CD pipelines), Hardware manufacturing (embodied carbon), Product disposal and recycling",
+                    "4. End-User Device Emissions: Calculated based on the time users spend on the product, distributed across different device types (laptops, desktops, smartphones, tablets, TVs, e-readers) according to impression counts. It considers the average power consumption of each device type and the carbon intensity of electricity in the specified country."
                     
-                    "Constants and Emission Factors: Default values for energy intensity, device power consumption, data transfer bitrates, and country carbon intensity are defined here: https://github.com/AnneLovina/carbonbyte/blob/main/parameters.py"
                 ]
+                "note": "It does not currently include emissions related to: Development and Design phases, Maintenance and Updates (e.g., CI/CD pipelines), Hardware manufacturing (embodied carbon), Product disposal and recycling. Constants and Emission Factors: Default values for energy intensity, device power consumption, data transfer bitrates, and country carbon intensity are defined here: https://github.com/AnneLovina/carbonbyte/blob/main/parameters.py."
             },
             {
                 "question": "Why should I calculate the emissions of my digital products?",
